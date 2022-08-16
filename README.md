@@ -1,4 +1,6 @@
 # MiniHunt
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_shield)
+
 
 这是一个完全开源的MineHunt分支
 
@@ -13,3 +15,7 @@
 原为HJYMC服务器设计
 
 现将其开源发布 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_large)
