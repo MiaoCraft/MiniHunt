@@ -25,7 +25,7 @@ FriendsHurt: false
 
 #第零阶梯玩家数量（同时也是最小玩家数量）
 #（大于等于该数量Runner会设置对应阶梯数量，下同）
-#如L0Player=2 L0Hunter=1即在总玩家达到2及以上的时候，猎人数为1）a
+#如L0Player=2 L0Hunter=1即在总玩家达到2及以上的时候，猎人数为1）
 L0Player: 2
 
 #第零阶梯逃亡者数量
