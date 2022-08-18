@@ -60,3 +60,4 @@ target/classes/net/mcxk/minihunt/watcher/ReconnectWatcher.class
 target/classes/plugin.yml
 out/artifacts/MiniHunt_jar/MiniHunt.jar
 .idea/artifacts/MiniHunt_jar.xml
+out/artifacts/MiniHunt_jar/MiniHuntv3.5.jar
