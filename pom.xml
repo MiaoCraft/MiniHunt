@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.mcxk</groupId>
-    <artifactId>HJYHunt</artifactId>
+    <artifactId>MiniHunt</artifactId>
     <version>3.4</version>
     <packaging>jar</packaging>
 
-    <name>HJYHunt</name>
+    <name>MiniHunt</name>
 
     <properties>
         <java.version>1.8</java.version>

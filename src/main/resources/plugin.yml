@@ -1,14 +1,14 @@
-name: HJYHunt
+name: MiniHunt
 version: 3.4
-main: net.mcxk.hjyhunt.HJYHunt
+main: net.mcxk.minihunt.MiniHunt
 authors: [ MossCG, LingMuQingYu, Crsuh2er0 ]
-website: https://github.com/MiaoCraft/HJYHunt
+website: https://github.com/MiaoCraft/MiniHunt
 api-version: 1.16
 softdepend:
   - AdvancedReplay
 
 commands:
-  hjyhunt:
+  minihunt:
     description: 猎人游戏指令
     usage: |
       /<command> [about|hunter|runner|rstcd|players|start|want|help]
