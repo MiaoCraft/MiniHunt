@@ -58,3 +58,5 @@ target/classes/net/mcxk/minihunt/watcher/RadarWatcher.class
 target/classes/net/mcxk/minihunt/watcher/ReconnectWatcher$1.class
 target/classes/net/mcxk/minihunt/watcher/ReconnectWatcher.class
 target/classes/plugin.yml
+out/artifacts/MiniHunt_jar/MiniHunt.jar
+.idea/artifacts/MiniHunt_jar.xml
