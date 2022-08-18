@@ -57,14 +57,6 @@
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -93,11 +85,6 @@
             <version>LOCAL</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/Replay.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.sonatype.sisu</groupId>
-            <artifactId>sisu-inject-bean</artifactId>
-            <version>2.6.0</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
