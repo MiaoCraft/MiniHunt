@@ -304,6 +304,7 @@ public class Game {
         Bukkit.broadcastMessage(ChatColor.RED + "猎人需要阻止逃亡者击杀末影龙或击杀逃亡者以取得胜利。");
         Bukkit.broadcastMessage(ChatColor.GREEN + "逃亡者需要在猎人的追杀下击败末影龙以取得胜利。逃亡者无法复活且由于任何原因死亡均会导致猎人胜利。");
         Bukkit.broadcastMessage(ChatColor.AQUA + "在游戏过程中，当你解锁特定的游戏阶段时，全体玩家将会获得阶段奖励，可能是特定物品也可能是增益效果。");
+        Bukkit.broadcastMessage(String.format("%s%s猎人可以右键刷新指南针，来更好的追踪逃亡者。", ChatColor.RED, ChatColor.BOLD));
         Bukkit.broadcastMessage(ChatColor.AQUA + "猎人可以通过合成指南针来定位逃亡者的方向；逃亡者可以通过合成指南针摧毁猎人的指南针。");
         Bukkit.broadcastMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "祝君好运，末地见！");
         Bukkit.broadcastMessage(ChatColor.GREEN + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
