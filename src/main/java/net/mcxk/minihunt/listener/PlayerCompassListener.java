@@ -138,19 +138,16 @@ public class PlayerCompassListener implements Listener {
             event.getPlayer().sendMessage("追踪失败，所有逃亡者均已离线等待重连中...");
         }
         Player closestRunner = null;
+        double minDistance = Double.MAX_VALUE;
+        double distance;
         for (Player runner : GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER)) {
-            if (runner.getWorld() != event.getPlayer().getWorld() ||
-                    runner.getGameMode() == GameMode.SPECTATOR ||
-                    closestRunner == null) {
-                if (closestRunner == null) {
-                    closestRunner = runner;
-                }
-                continue;
-            }
-            if (event.getPlayer().getLocation().distance(runner.getLocation()) < closestRunner.getLocation().distance(event.getPlayer().getLocation())) {
+            distance = event.getPlayer().getLocation().distance(runner.getLocation());
+            if (runner.getWorld() == event.getPlayer().getWorld() && runner.getGameMode() != GameMode.SPECTATOR && distance < minDistance) {
                 closestRunner = runner;
+                minDistance = distance;
             }
         }
+
         if (closestRunner == null) {
             event.getPlayer().sendMessage("追踪失败，没有任何逃亡者和您所处的世界相同");
         } else {
