@@ -22,8 +22,10 @@ public class SeedFilter {
         String randBiome = token.getString("randbiome");
         String pref = token.getString("pref");
         String seed = " ";
-        while (" ".equals(seed)) {
+        int tries = 0;
+        while (" ".equals(seed) && tries < 3) {
             seed = HTTPRequester.request(String.format("https://seedbankcustom.andynovo.repl.co/proxy2?class=%s&pref=%s&randbiome=%s&struct=%s", sclass, pref, randBiome, sstruct));
+            tries++;
         }
         return seed;
     }
