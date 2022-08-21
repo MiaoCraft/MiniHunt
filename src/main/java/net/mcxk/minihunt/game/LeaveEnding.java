@@ -18,9 +18,10 @@ public class LeaveEnding {
     public static void leaveEnd(PlayerRole winner) {
         if (game.isJudgeWinnerWhenLeaveEnd()) {
             GameStop.stop(winner);
+        } else {
+            Bukkit.broadcastMessage("由于比赛的一方所有人全部掉线，游戏被迫终止。");
+            Bukkit.broadcastMessage("服务器将会在 60 秒钟后重新启动。");
+            Bukkit.getScheduler().runTaskLater(MiniHunt.getInstance(), GameEnd::startEnd, 20);
         }
-        Bukkit.broadcastMessage("由于比赛的一方所有人全部掉线，游戏被迫终止。");
-        Bukkit.broadcastMessage("服务器将会在 60 秒钟后重新启动。");
-        Bukkit.getScheduler().runTaskLater(MiniHunt.getInstance(), GameEnd::startEnd, 20);
     }
 }

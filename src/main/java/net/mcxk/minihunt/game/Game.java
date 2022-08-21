@@ -198,11 +198,24 @@ public class Game {
         if (status == net.mcxk.minihunt.game.GameStatus.WAITING_PLAYERS) {
             this.inGamePlayers.remove(player);
         } else {
+            if(GetPlayerAsRole.getRoleMapping().get(player) == PlayerRole.WAITING){
+                return;
+            }
             if (endWhenAllLeave) {
-                if (GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).isEmpty()) {
+                boolean runnerHasOnline = false;
+                boolean hunterHasOnline = false;
+                for(Player p : inGamePlayers){
+                    if(GetPlayerAsRole.getRoleMapping().get(p) == PlayerRole.RUNNER){
+                        runnerHasOnline = true;
+                    }
+                    if(GetPlayerAsRole.getRoleMapping().get(p) == PlayerRole.HUNTER){
+                        hunterHasOnline = true;
+                    }
+                }
+                if (!runnerHasOnline) {
                     LeaveEnding.leaveEnd(PlayerRole.HUNTER);
                 }
-                if (GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).isEmpty()) {
+                if (!hunterHasOnline) {
                     LeaveEnding.leaveEnd(PlayerRole.RUNNER);
                 }
             } else {
@@ -280,7 +293,7 @@ public class Game {
         noRolesPlayers.forEach(p -> roleMapTemp.put(p, PlayerRole.HUNTER));
         GetPlayerAsRole.setRoleMapping(new ConcurrentHashMap<>(roleMapTemp));
         Bukkit.broadcastMessage("正在将逃亡者随机传送到远离猎人的位置...");
-        // 先给第一个runner找个位置 bug
+        // 先给第一个runner找个位置
         Location airDropLoc = airDrop(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).get(0).getWorld().getSpawnLocation());
         // 再把其他runner传送过去
         GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).forEach(runner -> runner.teleport(airDropLoc));
