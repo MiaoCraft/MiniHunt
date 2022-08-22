@@ -1,5 +1,10 @@
 # MiniHunt
+<<<<<<< Updated upstream
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_shield)[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f679296731b34c2ba2f794e5e54721e9)](https://www.codacy.com/gh/MiaoCraft/MiniHunt/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MiaoCraft/MiniHunt&amp;utm_campaign=Badge_Grade)
+=======
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_shield)
+>>>>>>> Stashed changes
 
 这是一个完全开源的MineHunt分支
 
@@ -13,8 +18,16 @@
 
 原为HJYMC服务器设计
 
+<<<<<<< Updated upstream
 现将其开源发布 
 
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_large)
+=======
+现将其开源发布
+
+## License
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_large)
+>>>>>>> Stashed changes
