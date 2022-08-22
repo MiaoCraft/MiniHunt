@@ -1,6 +1,7 @@
 package net.mcxk.minihunt.util;
 
-import com.alibaba.fastjson2.JSONObject;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 /**
  * @author Crsuh2er0
@@ -10,8 +11,7 @@ import com.alibaba.fastjson2.JSONObject;
 public class String2Json {
     private String2Json() {
     }
-
-    public static JSONObject str2Json(String str) {
-        return JSONObject.parseObject(str);
+    public static JsonElement str2Json(String str) {
+        return new JsonParser().parse(str);
     }
 }

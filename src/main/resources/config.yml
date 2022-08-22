@@ -1,6 +1,6 @@
 #种子获取方式
 # 0 = 随机 | 1 = ./plugins/MiniHunt/seeds.txt | 2 = 网络筛种
-seedFrom: 2
+seedFrom: 0
 
 #第1种方式的要获取的第一个种子行数
 #（0为第一行，所以填在这里的行数要-1）
@@ -12,7 +12,7 @@ LevelSeedNum: 0
 filterCode: 0000000000000000000000000000000000000000000000000002000200020002C
 
 #是否在一个队伍的玩家全部掉线时直接结束游戏
-endWhenAllLeave: true
+endWhenAllLeave: false
 
 #是否在上述情况下判断胜者
 judgeWinnerWhenLeaveEnd: true

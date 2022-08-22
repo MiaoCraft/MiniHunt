@@ -1,6 +1,6 @@
 package net.mcxk.minihunt.util;
 
-import com.alibaba.fastjson2.JSONObject;
+import com.google.gson.JsonObject;
 import net.mcxk.minihunt.MiniHunt;
 
 /**
@@ -10,17 +10,17 @@ import net.mcxk.minihunt.MiniHunt;
  */
 public class SeedFilter {
     static final String FILTER_CODE = MiniHunt.getInstance().getConfig().getString("filterCode");
-    static JSONObject token;
+    static JsonObject token;
 
     private SeedFilter() {
     }
 
     public static String getSeed() {
-        token = String2Json.str2Json(HTTPRequester.request("https://fsg.opalstacked.com/?filter=" + FILTER_CODE));
-        String sclass = token.getString("class");
-        String sstruct = token.getString("struct");
-        String randBiome = token.getString("randbiome");
-        String pref = token.getString("pref");
+        token = String2Json.str2Json(HTTPRequester.request("https://fsg.opalstacked.com/?filter=" + FILTER_CODE)).getAsJsonObject();
+        String sclass = token.get("class").getAsString();
+        String sstruct = token.get("struct").getAsString();
+        String randBiome = token.get("randbiome").getAsString();
+        String pref = token.get("pref").getAsString();
         String seed = " ";
         int tries = 0;
         while (" ".equals(seed) && tries < 3) {

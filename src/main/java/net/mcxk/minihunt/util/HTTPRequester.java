@@ -17,6 +17,8 @@ import java.util.Objects;
  * @apiNote
  */
 public class HTTPRequester {
+    private HTTPRequester() {
+    }
     public static String request(String httpUrl) {
         HttpURLConnection connection = null;
         InputStream is = null;
@@ -26,7 +28,7 @@ public class HTTPRequester {
             URL url = new URL(httpUrl);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setReadTimeout(10000000);
+            connection.setReadTimeout((int) 1e8);
             connection.connect();
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
@@ -39,7 +41,7 @@ public class HTTPRequester {
                 }
             }
         } catch (IOException e) {
-            MiniHunt.getInstance().getLogger().info("HTTP请求失败!请到GitHub反馈此问题!");
+            MiniHunt.getInstance().getLogger().info("请求种子失败!将使用随机种子!");
             e.printStackTrace();
         } finally {
             if (br != null) {
