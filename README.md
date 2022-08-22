@@ -1,6 +1,5 @@
 # MiniHunt
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_shield)
-
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_shield)[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f679296731b34c2ba2f794e5e54721e9)](https://www.codacy.com/gh/MiaoCraft/MiniHunt/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MiaoCraft/MiniHunt&amp;utm_campaign=Badge_Grade)
 
 这是一个完全开源的MineHunt分支
 
