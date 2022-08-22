@@ -1,4 +1,5 @@
 # MiniHunt
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9274126e6ed84e4dbabdc70589013f2a)](https://app.codacy.com/gh/MiaoCraft/MiniHunt?utm_source=github.com&utm_medium=referral&utm_content=MiaoCraft/MiniHunt&utm_campaign=Badge_Grade_Settings)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FMiaoCraft%2FMiniHunt?ref=badge_shield)
 
 
