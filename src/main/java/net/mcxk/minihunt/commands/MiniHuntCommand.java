@@ -21,11 +21,11 @@ public class MiniHuntCommand implements CommandExecutor {
         if (args.length < 1) {
             return false;
         }
-        final MiniHunt miniHunt = net.mcxk.minihunt.MiniHunt.getInstance();
+        final MiniHunt miniHunt = MiniHunt.getInstance();
         final Game game = miniHunt.getGame();
 
         switch (args[0]) {
-            case net.mcxk.minihunt.game.ConstantCommand.ABOUT:
+            case ConstantCommand.ABOUT:
                 AboutCommand.about(sender);
                 return true;
             case ConstantCommand.HELP:

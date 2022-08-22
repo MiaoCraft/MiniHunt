@@ -5,7 +5,7 @@ import net.mcxk.minihunt.commands.MiniHuntCommand;
 import net.mcxk.minihunt.commands.TabComplete;
 import net.mcxk.minihunt.game.ConstantCommand;
 import net.mcxk.minihunt.game.Game;
-import net.mcxk.minihunt.listener.ChatListener;
+import net.mcxk.minihunt.listener.*;
 import net.mcxk.minihunt.watcher.CountDownWatcher;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -48,27 +48,26 @@ public final class MiniHunt extends JavaPlugin {
         instance = this;
         game = new Game();
         countDownWatcher = new CountDownWatcher();
-        final PluginCommand MiniHuntCommand = this.getCommand(ConstantCommand.MINI_HUNT);
-        if (Objects.nonNull(MiniHuntCommand)) {
-            MiniHuntCommand.setExecutor(new MiniHuntCommand());
-            MiniHuntCommand.setTabCompleter(new TabComplete());
+        final PluginCommand miniHuntCommand = this.getCommand(ConstantCommand.MINI_HUNT);
+        if (Objects.nonNull(miniHuntCommand)) {
+            miniHuntCommand.setExecutor(new MiniHuntCommand());
+            miniHuntCommand.setTabCompleter(new TabComplete());
         }
         Plugin pluginAdvancedReplay = Bukkit.getPluginManager().getPlugin("AdvancedReplay");
         if (pluginAdvancedReplay != null) {
             getLogger().info("检测到AdvancedReplay插件，回放功能已启用！");
         }
         game.switchWorldRuleForReady(false);
-        Bukkit.getPluginManager().registerEvents(new net.mcxk.minihunt.listener.PlayerServerListener(), this);
-        Bukkit.getPluginManager().registerEvents(new net.mcxk.minihunt.listener.PlayerInteractListener(), this);
-        Bukkit.getPluginManager().registerEvents(new net.mcxk.minihunt.listener.PlayerCompassListener(), this);
-        Bukkit.getPluginManager().registerEvents(new net.mcxk.minihunt.listener.ProgressDetectingListener(), this);
-        Bukkit.getPluginManager().registerEvents(new net.mcxk.minihunt.listener.GameWinnerListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerServerListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerCompassListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ProgressDetectingListener(), this);
+        Bukkit.getPluginManager().registerEvents(new GameWinnerListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
     }
 
     @Override
     public void onDisable() {
         // 插件关闭逻辑
-
     }
 }

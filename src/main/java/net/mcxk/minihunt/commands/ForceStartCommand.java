@@ -1,5 +1,6 @@
 package net.mcxk.minihunt.commands;
 
+import net.mcxk.minihunt.game.ConstantCommand;
 import net.mcxk.minihunt.game.Game;
 import net.mcxk.minihunt.util.SendMessage;
 import org.bukkit.ChatColor;
@@ -15,7 +16,7 @@ public class ForceStartCommand {
     }
 
     public static boolean forceStart(CommandSender sender, Game game) {
-        if (!sender.hasPermission(net.mcxk.minihunt.game.ConstantCommand.MINI_HUNT_ADMIN)) {
+        if (!sender.hasPermission(ConstantCommand.MINI_HUNT_ADMIN)) {
             SendMessage.sendMessage(String.format("%s你没有执行该命令的权限。", ChatColor.RED), sender);
             return true;
         }

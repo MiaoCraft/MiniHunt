@@ -17,17 +17,19 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.Map;
 
+import static net.mcxk.minihunt.util.Util.buildTextComponent;
+
 /**
  * 监听玩家进入服务器
  */
 public class PlayerServerListener implements Listener {
     private static final BaseComponent[] SELECT_INTENTION_ROLE = new BaseComponent[]{
-            net.mcxk.minihunt.util.Util.buildTextComponent("请选择您意向的角色：", false, ChatColor.YELLOW),
-            net.mcxk.minihunt.util.Util.buildTextComponent("逃亡者", true, ChatColor.RED, "/minihunt want runner"),
-            net.mcxk.minihunt.util.Util.buildTextComponent(" - ", false, ChatColor.WHITE),
-            net.mcxk.minihunt.util.Util.buildTextComponent("猎人(默认)", true, ChatColor.GREEN, "/minihunt want hunter"),
-            net.mcxk.minihunt.util.Util.buildTextComponent(" - ", false, ChatColor.WHITE),
-            net.mcxk.minihunt.util.Util.buildTextComponent("观战", true, ChatColor.GRAY, "/minihunt want waiting"),
+            buildTextComponent("请选择您意向的角色：", false, ChatColor.YELLOW),
+            buildTextComponent("逃亡者", true, ChatColor.RED, "/minihunt want runner"),
+            buildTextComponent(" - ", false, ChatColor.WHITE),
+            buildTextComponent("猎人(默认)", true, ChatColor.GREEN, "/minihunt want hunter"),
+            buildTextComponent(" - ", false, ChatColor.WHITE),
+            buildTextComponent("观战", true, ChatColor.GRAY, "/minihunt want waiting"),
     };
     private final MiniHunt plugin = MiniHunt.getInstance();
 
@@ -37,9 +39,9 @@ public class PlayerServerListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void join(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
-        if (plugin.getGame().getStatus() == net.mcxk.minihunt.game.GameStatus.WAITING_PLAYERS) {
+        if (plugin.getGame().getStatus() == GameStatus.WAITING_PLAYERS) {
             if (plugin.getGame().playerJoining(player)) {
-                plugin.getGame().getIntentionRoleMapping().put(player, net.mcxk.minihunt.game.PlayerRole.HUNTER);
+                plugin.getGame().getIntentionRoleMapping().put(player, PlayerRole.HUNTER);
                 if (plugin.getGame().isSelectTeam()) {
                     player.spigot().sendMessage(SELECT_INTENTION_ROLE);
                 }
@@ -47,7 +49,7 @@ public class PlayerServerListener implements Listener {
                 player.setGameMode(GameMode.ADVENTURE);
             } else {
                 player.sendMessage("当前游戏已满人，已自动加入观战者队列");
-                plugin.getGame().getIntentionRoleMapping().put(player, net.mcxk.minihunt.game.PlayerRole.WAITING);
+                plugin.getGame().getIntentionRoleMapping().put(player, PlayerRole.WAITING);
             }
         } else {
             //处理玩家重连
@@ -55,7 +57,7 @@ public class PlayerServerListener implements Listener {
                 plugin.getGame().getInGamePlayers().removeIf(p -> p.getUniqueId().equals(player.getUniqueId()));
                 plugin.getGame().getInGamePlayers().add(player);
 
-                for (Map.Entry<Player, net.mcxk.minihunt.game.PlayerRole> playerPlayerRoleEntry : GetPlayerAsRole.getRoleMapping().entrySet()) {
+                for (Map.Entry<Player, PlayerRole> playerPlayerRoleEntry : GetPlayerAsRole.getRoleMapping().entrySet()) {
                     if (playerPlayerRoleEntry.getKey().getUniqueId().equals(player.getUniqueId())) {
                         PlayerRole role = playerPlayerRoleEntry.getValue();
                         GetPlayerAsRole.getRoleMapping().remove(playerPlayerRoleEntry.getKey());

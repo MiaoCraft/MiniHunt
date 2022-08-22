@@ -34,19 +34,19 @@ public class GameStop {
         });
         game.setStatus(GameStatus.ENDED);
         Bukkit.broadcastMessage(ChatColor.YELLOW + "游戏结束! 服务器将在 60 秒后重新启动！");
-        String runnerNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList()));
-        String hunterNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
+        String runnerNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList()));
+        String hunterNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
 
-        if (winner == net.mcxk.minihunt.game.PlayerRole.HUNTER) {
+        if (winner == PlayerRole.HUNTER) {
             Bukkit.broadcastMessage(ChatColor.GOLD + "胜利者：猎人");
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "恭喜：" + hunterNames);
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).forEach(player -> player.sendTitle(ChatColor.GOLD + "胜利", "成功击败了逃亡者", 0, 2000, 0));
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).forEach(player -> player.sendTitle(ChatColor.RED + "游戏结束", "不幸阵亡", 0, 2000, 0));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(player -> player.sendTitle(ChatColor.GOLD + "胜利", "成功击败了逃亡者", 0, 2000, 0));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).forEach(player -> player.sendTitle(ChatColor.RED + "游戏结束", "不幸阵亡", 0, 2000, 0));
         } else {
             Bukkit.broadcastMessage(ChatColor.GOLD + "胜利者：逃亡者");
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "恭喜：" + runnerNames);
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).forEach(player -> player.sendTitle(ChatColor.GOLD + "胜利", "成功战胜了末影龙", 0, 2000, 0));
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).forEach(player -> player.sendTitle(ChatColor.RED + "游戏结束", "未能阻止末影龙死亡", 0, 2000, 0));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).forEach(player -> player.sendTitle(ChatColor.GOLD + "胜利", "成功战胜了末影龙", 0, 2000, 0));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(player -> player.sendTitle(ChatColor.RED + "游戏结束", "未能阻止末影龙死亡", 0, 2000, 0));
         }
         if (Bukkit.getPluginManager().isPluginEnabled("AdvancedReplay")) {
             try {
@@ -76,25 +76,23 @@ public class GameStop {
         }, (long) 20 * 10);
     }
 
-    public static void stop(net.mcxk.minihunt.game.PlayerRole winner) {
-        game.getInGamePlayers().stream().filter(Player::isOnline).forEach(player -> {
-            player.setGameMode(GameMode.SPECTATOR);
-        });
+    public static void stop(PlayerRole winner) {
+        game.getInGamePlayers().stream().filter(Player::isOnline).forEach(player -> player.setGameMode(GameMode.SPECTATOR));
         game.setStatus(GameStatus.ENDED);
         Bukkit.broadcastMessage(ChatColor.YELLOW + "游戏结束! 服务器将在 60 秒后重新启动！");
-        String runnerNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList()));
-        String hunterNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
+        String runnerNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList()));
+        String hunterNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
 
-        if (winner == net.mcxk.minihunt.game.PlayerRole.HUNTER) {
+        if (winner == PlayerRole.HUNTER) {
             Bukkit.broadcastMessage(ChatColor.GOLD + "胜利者：猎人");
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "恭喜：" + hunterNames);
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).forEach(player -> player.sendTitle(ChatColor.GOLD + "胜利", "成功击败了逃亡者", 0, 2000, 0));
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).forEach(player -> player.sendTitle(ChatColor.RED + "游戏结束", "不幸阵亡", 0, 2000, 0));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(player -> player.sendTitle(ChatColor.GOLD + "胜利", "成功击败了逃亡者", 0, 2000, 0));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).forEach(player -> player.sendTitle(ChatColor.RED + "游戏结束", "不幸阵亡", 0, 2000, 0));
         } else {
             Bukkit.broadcastMessage(ChatColor.GOLD + "胜利者：逃亡者");
             Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "恭喜：" + runnerNames);
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).forEach(player -> player.sendTitle(ChatColor.GOLD + "胜利", "成功战胜了末影龙", 0, 2000, 0));
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).forEach(player -> player.sendTitle(ChatColor.RED + "游戏结束", "未能阻止末影龙死亡", 0, 2000, 0));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).forEach(player -> player.sendTitle(ChatColor.GOLD + "胜利", "成功战胜了末影龙", 0, 2000, 0));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(player -> player.sendTitle(ChatColor.RED + "游戏结束", "未能阻止末影龙死亡", 0, 2000, 0));
         }
         if (Bukkit.getPluginManager().isPluginEnabled("AdvancedReplay")) {
             try {

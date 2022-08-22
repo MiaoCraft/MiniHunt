@@ -30,7 +30,7 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void clickXJB(PlayerInteractEvent event) {
-        if (plugin.getGame().getStatus() != net.mcxk.minihunt.game.GameStatus.GAME_STARTED) {
+        if (plugin.getGame().getStatus() != GameStatus.GAME_STARTED) {
             event.setCancelled(true);
             event.setUseInteractedBlock(Event.Result.DENY);
             event.setUseItemInHand(Event.Result.DENY);
@@ -47,7 +47,7 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void damageXJB(EntityDamageEvent event) {
-        if (plugin.getGame().getStatus() != net.mcxk.minihunt.game.GameStatus.GAME_STARTED) {
+        if (plugin.getGame().getStatus() != GameStatus.GAME_STARTED) {
             event.setCancelled(true);
         }
     }
@@ -81,12 +81,12 @@ public class PlayerInteractListener implements Listener {
             return;
         }
 
-        Optional<net.mcxk.minihunt.game.PlayerRole> player1Role = plugin.getGame().getPlayerRole(player1);
-        Optional<net.mcxk.minihunt.game.PlayerRole> player2Role = plugin.getGame().getPlayerRole(player2);
+        Optional<PlayerRole> player1Role = plugin.getGame().getPlayerRole(player1);
+        Optional<PlayerRole> player2Role = plugin.getGame().getPlayerRole(player2);
         if (player1Role.isPresent() && player2Role.isPresent()) {
             // 角色类型相同
             if (player1Role.get() != player2Role.get()) {
-                if (player2Role.get() == net.mcxk.minihunt.game.PlayerRole.HUNTER
+                if (player2Role.get() == PlayerRole.HUNTER
                         && Objects.isNull(plugin.getGame().getFirstTeamPlayer())) {
                     // 记录首次攻击到逃亡者玩家
                     plugin.getGame().setFirstTeamPlayer(player1);

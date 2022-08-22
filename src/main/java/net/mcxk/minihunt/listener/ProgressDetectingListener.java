@@ -24,7 +24,7 @@ public class ProgressDetectingListener implements Listener {
         if (event.getRecipe().getResult().getType() != Material.COMPASS) {
             return;
         }
-        plugin.getGame().getProgressManager().unlockProgress(net.mcxk.minihunt.game.GameProgress.COMPASS_UNLOCKED);
+        plugin.getGame().getProgressManager().unlockProgress(GameProgress.COMPASS_UNLOCKED);
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
@@ -32,7 +32,7 @@ public class ProgressDetectingListener implements Listener {
         if (event.getItemType() != Material.IRON_INGOT) {
             return;
         }
-        plugin.getGame().getProgressManager().unlockProgress(net.mcxk.minihunt.game.GameProgress.IRON_MINED);
+        plugin.getGame().getProgressManager().unlockProgress(GameProgress.IRON_MINED);
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
@@ -40,36 +40,36 @@ public class ProgressDetectingListener implements Listener {
         if (event.getBlock().getType() != Material.STONE) {
             return;
         }
-        plugin.getGame().getProgressManager().unlockProgress(net.mcxk.minihunt.game.GameProgress.STONE_AGE);
+        plugin.getGame().getProgressManager().unlockProgress(GameProgress.STONE_AGE);
         plugin.getGame().getGameEndingData().setStoneAgePassed(event.getPlayer().getName());
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void changeDim(PlayerPortalEvent event) {
         if (Objects.requireNonNull(Objects.requireNonNull(event.getTo()).getWorld()).getEnvironment() == World.Environment.NETHER) {
-            plugin.getGame().getProgressManager().unlockProgress(net.mcxk.minihunt.game.GameProgress.ENTER_NETHER, event.getPlayer());
+            plugin.getGame().getProgressManager().unlockProgress(GameProgress.ENTER_NETHER, event.getPlayer());
             return;
         }
         if (event.getTo().getWorld().getEnvironment() == World.Environment.THE_END) {
-            plugin.getGame().getProgressManager().unlockProgress(net.mcxk.minihunt.game.GameProgress.ENTER_END);
+            plugin.getGame().getProgressManager().unlockProgress(GameProgress.ENTER_END);
         }
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void teleport(PlayerTeleportEvent event) {
         if (Objects.requireNonNull(Objects.requireNonNull(event.getTo()).getWorld()).getEnvironment() == World.Environment.NETHER) {
-            plugin.getGame().getProgressManager().unlockProgress(net.mcxk.minihunt.game.GameProgress.ENTER_NETHER, event.getPlayer());
+            plugin.getGame().getProgressManager().unlockProgress(GameProgress.ENTER_NETHER, event.getPlayer());
             return;
         }
         if (event.getTo().getWorld().getEnvironment() == World.Environment.THE_END) {
-            plugin.getGame().getProgressManager().unlockProgress(net.mcxk.minihunt.game.GameProgress.ENTER_END);
+            plugin.getGame().getProgressManager().unlockProgress(GameProgress.ENTER_END);
         }
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void pickup(EntityPickupItemEvent event) {
         if (event.getItem().getItemStack().getType() == Material.ENDER_PEARL) {
-            plugin.getGame().getProgressManager().unlockProgress(net.mcxk.minihunt.game.GameProgress.GET_ENDER_PEARL);
+            plugin.getGame().getProgressManager().unlockProgress(GameProgress.GET_ENDER_PEARL);
             return;
         }
         if (event.getItem().getItemStack().getType() == Material.BLAZE_ROD) {

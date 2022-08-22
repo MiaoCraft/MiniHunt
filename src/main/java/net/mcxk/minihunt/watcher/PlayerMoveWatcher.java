@@ -22,18 +22,16 @@ public class PlayerMoveWatcher {
                 MiniHunt.getInstance().getGame().getInGamePlayers().forEach(player -> {
                     World.Environment environment = player.getWorld().getEnvironment();
                     if (environment != World.Environment.NORMAL) {
-                        Optional<net.mcxk.minihunt.game.PlayerRole> role = MiniHunt.getInstance().getGame().getPlayerRole(player);
-                        if (role.isPresent()) {
-                            if (role.get() == PlayerRole.RUNNER) {
-                                if (!runnerNether && environment == World.Environment.NETHER) {
-                                    runnerNether = true;
-                                    Bukkit.broadcastMessage(String.format("%s逃亡者 %s 已到达 下界 维度！", ChatColor.YELLOW, player.getName()));
-                                    plugin.getGame().setFirstEnterNetherPlayer(player);
-                                }
-                                if (!runnerTheEnd && environment == World.Environment.THE_END) {
-                                    runnerTheEnd = true;
-                                    Bukkit.broadcastMessage(String.format("%s逃亡者 %s 已到达 末地 维度！", ChatColor.YELLOW, player.getName()));
-                                }
+                        Optional<PlayerRole> role = MiniHunt.getInstance().getGame().getPlayerRole(player);
+                        if (role.isPresent() && role.get() == PlayerRole.RUNNER) {
+                            if (!runnerNether && environment == World.Environment.NETHER) {
+                                runnerNether = true;
+                                Bukkit.broadcastMessage(String.format("%s逃亡者 %s 已到达 下界 维度！", ChatColor.YELLOW, player.getName()));
+                                plugin.getGame().setFirstEnterNetherPlayer(player);
+                            }
+                            if (!runnerTheEnd && environment == World.Environment.THE_END) {
+                                runnerTheEnd = true;
+                                Bukkit.broadcastMessage(String.format("%s逃亡者 %s 已到达 末地 维度！", ChatColor.YELLOW, player.getName()));
                             }
                         }
                     }

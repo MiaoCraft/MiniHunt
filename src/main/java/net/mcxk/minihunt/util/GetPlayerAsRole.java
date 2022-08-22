@@ -20,7 +20,7 @@ public class GetPlayerAsRole {
     static Game game = new Game();
     @Getter
     @Setter
-    private static Map<Player, net.mcxk.minihunt.game.PlayerRole> roleMapping = Maps.newConcurrentMap();
+    private static Map<Player, PlayerRole> roleMapping = Maps.newConcurrentMap();
 
     private GetPlayerAsRole() {
     }

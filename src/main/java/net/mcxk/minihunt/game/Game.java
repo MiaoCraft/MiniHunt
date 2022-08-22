@@ -55,7 +55,7 @@ public class Game {
      * 进度管理器
      */
     @Getter
-    private final net.mcxk.minihunt.game.GameProgressManager progressManager = new GameProgressManager();
+    private final GameProgressManager progressManager = new GameProgressManager();
     /**
      * 结算统计信息
      */
@@ -67,7 +67,7 @@ public class Game {
      * 线程安全
      */
     @Getter
-    private final Map<Player, net.mcxk.minihunt.game.PlayerRole> intentionRoleMapping = Maps.newConcurrentMap();
+    private final Map<Player, PlayerRole> intentionRoleMapping = Maps.newConcurrentMap();
     /**
      * 是否游戏结束后踢出所有玩家
      */
@@ -135,7 +135,7 @@ public class Game {
     private Player firstEnterNetherPlayer = null;
     @Getter
     @Setter
-    private net.mcxk.minihunt.game.GameStatus status = net.mcxk.minihunt.game.GameStatus.WAITING_PLAYERS;
+    private GameStatus status = GameStatus.WAITING_PLAYERS;
     /**
      * 玩家角色
      * 线程安全
@@ -149,14 +149,14 @@ public class Game {
         }
         this.compassUnlocked = unlocked;
         if (unlocked) {
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).forEach(p -> p.getInventory().addItem(new ItemStack(Material.COMPASS, 1)));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(p -> p.getInventory().addItem(new ItemStack(Material.COMPASS, 1)));
             Bukkit.broadcastMessage(ChatColor.YELLOW + "猎人已解锁追踪指南针！逃亡者的位置已经暴露！");
         } else {
-            GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).forEach(p -> p.getInventory().remove(Material.COMPASS));
+            GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(p -> p.getInventory().remove(Material.COMPASS));
             Bukkit.broadcastMessage(ChatColor.YELLOW + "猎人的追踪指南针被破坏失效，需要重新解锁！");
         }
         // 清除合成的指南针
-        GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).forEach(p -> p.getInventory().remove(Material.COMPASS));
+        GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).forEach(p -> p.getInventory().remove(Material.COMPASS));
     }
 
     /**
@@ -165,9 +165,9 @@ public class Game {
      * @param player 玩家
      * @return 可能是Empty（玩家不属于游戏中的玩家）否则返回玩家角色
      */
-    public Optional<net.mcxk.minihunt.game.PlayerRole> getPlayerRole(Player player) {
-        if (status == net.mcxk.minihunt.game.GameStatus.WAITING_PLAYERS) {
-            return Optional.of(net.mcxk.minihunt.game.PlayerRole.WAITING);
+    public Optional<PlayerRole> getPlayerRole(Player player) {
+        if (status == GameStatus.WAITING_PLAYERS) {
+            return Optional.of(PlayerRole.WAITING);
         }
         if (!GetPlayerAsRole.getRoleMapping().containsKey(player)) {
             return Optional.empty();
@@ -195,20 +195,20 @@ public class Game {
     }
 
     public void playerLeaving(Player player) {
-        if (status == net.mcxk.minihunt.game.GameStatus.WAITING_PLAYERS) {
+        if (status == GameStatus.WAITING_PLAYERS) {
             this.inGamePlayers.remove(player);
         } else {
-            if(GetPlayerAsRole.getRoleMapping().get(player) == PlayerRole.WAITING){
+            if (GetPlayerAsRole.getRoleMapping().get(player) == PlayerRole.WAITING) {
                 return;
             }
             if (endWhenAllLeave) {
                 boolean runnerHasOnline = false;
                 boolean hunterHasOnline = false;
-                for(Player p : inGamePlayers){
-                    if(GetPlayerAsRole.getRoleMapping().get(p) == PlayerRole.RUNNER){
+                for (Player p : inGamePlayers) {
+                    if (GetPlayerAsRole.getRoleMapping().get(p) == PlayerRole.RUNNER) {
                         runnerHasOnline = true;
                     }
-                    if(GetPlayerAsRole.getRoleMapping().get(p) == PlayerRole.HUNTER){
+                    if (GetPlayerAsRole.getRoleMapping().get(p) == PlayerRole.HUNTER) {
                         hunterHasOnline = true;
                     }
                 }
@@ -228,22 +228,22 @@ public class Game {
         GetPlayerAsRole.getRoleMapping().remove(player);
         this.inGamePlayers.remove(player);
 
-        if (GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).isEmpty()) {
+        if (GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).isEmpty()) {
             LeaveEnding.leaveEnd(PlayerRole.HUNTER);
-        } else if (GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).isEmpty()) {
+        } else if (GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).isEmpty()) {
             LeaveEnding.leaveEnd(PlayerRole.RUNNER);
         } else {
             Bukkit.broadcastMessage("玩家：" + player.getName() + " 因长时间未能重新连接回对战而被从列表中剔除");
-            Bukkit.broadcastMessage(ChatColor.GREEN + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
-            Bukkit.broadcastMessage(ChatColor.RED + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
+            Bukkit.broadcastMessage(ChatColor.GREEN + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
+            Bukkit.broadcastMessage(ChatColor.RED + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
         }
     }
 
     public void start() {
-        if (status != net.mcxk.minihunt.game.GameStatus.WAITING_PLAYERS) {
+        if (status != GameStatus.WAITING_PLAYERS) {
             return;
         }
-        status = net.mcxk.minihunt.game.GameStatus.GAME_STARTED;
+        status = GameStatus.GAME_STARTED;
         if (Bukkit.getPluginManager().isPluginEnabled("AdvancedReplay")) {
             Bukkit.broadcastMessage("请稍等，正在启动游戏录制...");
             try {
@@ -320,8 +320,8 @@ public class Game {
         Bukkit.broadcastMessage(ChatColor.AQUA + "猎人可以通过合成指南针来定位逃亡者的方向；逃亡者可以通过合成指南针摧毁猎人的指南针。");
         Bukkit.broadcastMessage(String.format("%s%s猎人可以左键方块刷新指南针，来更好的追踪逃亡者。", ChatColor.GREEN, ChatColor.BOLD));
         Bukkit.broadcastMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "祝君好运，末地见！");
-        Bukkit.broadcastMessage(ChatColor.GREEN + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
-        Bukkit.broadcastMessage(ChatColor.RED + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
+        Bukkit.broadcastMessage(ChatColor.GREEN + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
+        Bukkit.broadcastMessage(ChatColor.RED + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
         this.registerWatchers();
         plugin.getGame().getProgressManager().unlockProgress(GameProgress.GAME_STARTING, null);
     }

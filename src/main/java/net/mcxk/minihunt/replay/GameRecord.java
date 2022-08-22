@@ -9,7 +9,10 @@ import java.util.UUID;
 public class GameRecord {
     public static final UUID ROUND_UNIQUE_ID = UUID.randomUUID();
 
-    public static void record(net.mcxk.minihunt.game.Game game) {
+    private GameRecord() {
+    }
+
+    public static void record(Game game) {
         if (!Bukkit.getPluginManager().isPluginEnabled("AdvancedReplay")) {
             return;
         }

@@ -44,13 +44,13 @@ public class GameWinnerListener implements Listener {
                     plugin.getGame().getGameEndingData().setRunnerKiller(null);
                 }
                 event.getEntity().setGameMode(GameMode.SPECTATOR);
-                if (GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER).stream().allMatch(p -> p.getGameMode() == GameMode.SPECTATOR)) {
-                    GameStop.stop(net.mcxk.minihunt.game.PlayerRole.HUNTER, event.getEntity().getLocation().add(0, 3, 0));
+                if (GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().allMatch(p -> p.getGameMode() == GameMode.SPECTATOR)) {
+                    GameStop.stop(PlayerRole.HUNTER, event.getEntity().getLocation().add(0, 3, 0));
                     // 避免玩家死亡
                     event.getEntity().setHealth(20);
                 }
                 // 逃亡者首次击杀猎人
-            } else if (playerRole == net.mcxk.minihunt.game.PlayerRole.HUNTER
+            } else if (playerRole == PlayerRole.HUNTER
                     && Objects.nonNull(killerPlayer)
                     && Objects.isNull(plugin.getGame().getFirstKillPlayer())) {
                 // 记录逃亡者首次击杀猎人
@@ -62,15 +62,15 @@ public class GameWinnerListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
     public void entityDeath(EntityDamageByEntityEvent event) {
-        if (plugin.getGame().getStatus() != net.mcxk.minihunt.game.GameStatus.GAME_STARTED) {
+        if (plugin.getGame().getStatus() != GameStatus.GAME_STARTED) {
             return;
         }
         if (event.getEntityType() != EntityType.ENDER_DRAGON) {
             return;
         }
         if (event.getDamager() instanceof Player) {
-            Optional<net.mcxk.minihunt.game.PlayerRole> role = MiniHunt.getInstance().getGame().getPlayerRole(((Player) event.getDamager()));
-            if (role.isPresent() && role.get() == net.mcxk.minihunt.game.PlayerRole.HUNTER) {
+            Optional<PlayerRole> role = MiniHunt.getInstance().getGame().getPlayerRole(((Player) event.getDamager()));
+            if (role.isPresent() && role.get() == PlayerRole.HUNTER) {
                 event.setCancelled(true);
                 event.getEntity().sendMessage(ChatColor.RED + "猎人是末影龙的好伙伴，你不可以对龙造成伤害！");
                 return;
@@ -81,7 +81,7 @@ public class GameWinnerListener implements Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void entityDeath(EntityDamageByBlockEvent event) {
-        if (plugin.getGame().getStatus() != net.mcxk.minihunt.game.GameStatus.GAME_STARTED) {
+        if (plugin.getGame().getStatus() != GameStatus.GAME_STARTED) {
             return;
         }
         if (event.getEntityType() != EntityType.ENDER_DRAGON) {

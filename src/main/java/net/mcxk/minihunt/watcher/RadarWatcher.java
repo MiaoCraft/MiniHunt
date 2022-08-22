@@ -33,7 +33,7 @@ public class RadarWatcher {
                 if (plugin.getGame().getStatus() != GameStatus.GAME_STARTED) {
                     return;
                 }
-                List<Player> runners = GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER);
+                List<Player> runners = GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER);
                 List<Player> hunters = GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER);
                 for (Player runner : runners) {
                     for (Player hunter : hunters) {

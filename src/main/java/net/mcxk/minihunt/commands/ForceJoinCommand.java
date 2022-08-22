@@ -1,7 +1,9 @@
 package net.mcxk.minihunt.commands;
 
 import net.mcxk.minihunt.MiniHunt;
+import net.mcxk.minihunt.game.ConstantCommand;
 import net.mcxk.minihunt.game.Game;
+import net.mcxk.minihunt.game.PlayerRole;
 import net.mcxk.minihunt.util.GetPlayerAsRole;
 import net.mcxk.minihunt.util.SendMessage;
 import org.bukkit.Bukkit;
@@ -20,16 +22,16 @@ public class ForceJoinCommand {
     }
 
     public static boolean forceJoin(String type, CommandSender sender, Game game) {
-        if (!sender.hasPermission(net.mcxk.minihunt.game.ConstantCommand.MINI_HUNT_ADMIN) || !(sender instanceof Player)) {
+        if (!sender.hasPermission(ConstantCommand.MINI_HUNT_ADMIN) || !(sender instanceof Player)) {
             SendMessage.sendMessage(String.format("%s你没有执行该命令的权限。", ChatColor.RED), sender);
             return true;
         }
         Player player = (Player) sender;
         game.getInGamePlayers().add(player);
-        if (net.mcxk.minihunt.game.ConstantCommand.HUNTER.equalsIgnoreCase(type)) {
-            GetPlayerAsRole.getRoleMapping().put(player, net.mcxk.minihunt.game.PlayerRole.HUNTER);
+        if (ConstantCommand.HUNTER.equalsIgnoreCase(type)) {
+            GetPlayerAsRole.getRoleMapping().put(player, PlayerRole.HUNTER);
         } else {
-            GetPlayerAsRole.getRoleMapping().put(player, net.mcxk.minihunt.game.PlayerRole.RUNNER);
+            GetPlayerAsRole.getRoleMapping().put(player, PlayerRole.RUNNER);
         }
         player.setGameMode(GameMode.SURVIVAL);
         Bukkit.broadcastMessage(MiniHunt.messageHead + "玩家 " + sender.getName() + " 强制加入了游戏！ 身份：" + type);

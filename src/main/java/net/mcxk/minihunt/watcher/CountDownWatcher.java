@@ -17,14 +17,14 @@ import java.util.EnumMap;
 public class CountDownWatcher {
     private static final int SHORTER = 5;
 
-    private final EnumMap<PlayerRole, String> roleNameMap = new EnumMap<>(net.mcxk.minihunt.game.PlayerRole.class);
+    private final EnumMap<PlayerRole, String> roleNameMap = new EnumMap<>(PlayerRole.class);
     private final BukkitTask bukkitTask;
     private int remains = MiniHunt.getInstance().getGame().getCountdown();
 
     public CountDownWatcher() {
-        roleNameMap.put(net.mcxk.minihunt.game.PlayerRole.HUNTER, ChatColor.GREEN + "猎人");
-        roleNameMap.put(net.mcxk.minihunt.game.PlayerRole.RUNNER, ChatColor.RED + "逃亡者");
-        roleNameMap.put(net.mcxk.minihunt.game.PlayerRole.WAITING, ChatColor.GRAY + "旁观");
+        roleNameMap.put(PlayerRole.HUNTER, ChatColor.GREEN + "猎人");
+        roleNameMap.put(PlayerRole.RUNNER, ChatColor.RED + "逃亡者");
+        roleNameMap.put(PlayerRole.WAITING, ChatColor.GRAY + "旁观");
         bukkitTask = Bukkit.getScheduler().runTaskTimer(MiniHunt.getInstance(), new CountDownWatcherRunnable(), 0, 20);
     }
 
@@ -45,8 +45,8 @@ public class CountDownWatcher {
                 String title;
                 title = ChatColor.AQUA + "" + game.getInGamePlayers().size() + " " + ChatColor.WHITE + "/ " + ChatColor.AQUA + game.getMinPlayers();
                 Bukkit.getOnlinePlayers().forEach(p -> {
-                    final net.mcxk.minihunt.game.PlayerRole playerRole = game.getIntentionRoleMapping().get(p);
-                    if (net.mcxk.minihunt.game.PlayerRole.WAITING.equals(playerRole)) {
+                    final PlayerRole playerRole = game.getIntentionRoleMapping().get(p);
+                    if (PlayerRole.WAITING.equals(playerRole)) {
                         p.sendTitle(title, String.format("正在等待更多玩家加入游戏....[%s旁观%s]", ChatColor.GRAY, ChatColor.WHITE), 0, 40, 0);
                     } else {
                         String subtitle = String.format("正在等待更多玩家加入游戏....[%s%s]",

@@ -44,14 +44,14 @@ public class PlayerCompassListener implements Listener {
             return;
         }
         Player player = (Player) event.getWhoClicked();
-        Optional<net.mcxk.minihunt.game.PlayerRole> role = plugin.getGame().getPlayerRole(player);
+        Optional<PlayerRole> role = plugin.getGame().getPlayerRole(player);
         if (!role.isPresent()) {
             return;
         }
-        if (role.get() == net.mcxk.minihunt.game.PlayerRole.HUNTER) {
+        if (role.get() == PlayerRole.HUNTER) {
             // 猎人合成，解锁
             plugin.getGame().switchCompass(true);
-        } else if (role.get() == net.mcxk.minihunt.game.PlayerRole.RUNNER) {
+        } else if (role.get() == PlayerRole.RUNNER) {
             // 逃亡者合成，锁回去
             plugin.getGame().switchCompass(false);
         }
@@ -60,8 +60,8 @@ public class PlayerCompassListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void respawnGivenCompass(PlayerRespawnEvent event) {
         if (plugin.getGame().getStatus() == GameStatus.GAME_STARTED && plugin.getGame().isCompassUnlocked()) {
-            Optional<net.mcxk.minihunt.game.PlayerRole> role = plugin.getGame().getPlayerRole(event.getPlayer());
-            if (role.isPresent() && role.get() == net.mcxk.minihunt.game.PlayerRole.HUNTER) {
+            Optional<PlayerRole> role = plugin.getGame().getPlayerRole(event.getPlayer());
+            if (role.isPresent() && role.get() == PlayerRole.HUNTER) {
                 event.getPlayer().getInventory().addItem(new ItemStack(Material.COMPASS));
             }
         }
@@ -85,9 +85,9 @@ public class PlayerCompassListener implements Listener {
             return;
         }
         Player player = (Player) humanEntity;
-        Optional<net.mcxk.minihunt.game.PlayerRole> role = plugin.getGame().getPlayerRole(player);
+        Optional<PlayerRole> role = plugin.getGame().getPlayerRole(player);
         if (!role.isPresent() ||
-                role.get() != net.mcxk.minihunt.game.PlayerRole.HUNTER ||
+                role.get() != PlayerRole.HUNTER ||
                 Objects.nonNull(plugin.getGame().getFirstAllArmourPlayer())) {
             return;
         }
@@ -133,7 +133,7 @@ public class PlayerCompassListener implements Listener {
             event.getPlayer().setCompassTarget(event.getPlayer().getWorld().getSpawnLocation());
             event.getPlayer().sendMessage("你的队伍还没有解锁指南针，请先合成一个来解锁。");
         }
-        List<Player> runners = GetPlayerAsRole.getPlayersAsRole(net.mcxk.minihunt.game.PlayerRole.RUNNER);
+        List<Player> runners = GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER);
         if (runners.isEmpty()) {
             event.getPlayer().sendMessage("追踪失败，所有逃亡者均已离线等待重连中...");
         }
