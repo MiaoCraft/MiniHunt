@@ -28,7 +28,7 @@ public class HTTPRequester {
             URL url = new URL(httpUrl);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setReadTimeout((int) 1e8);
+            connection.setReadTimeout((int) 1.2e6);
             connection.connect();
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
