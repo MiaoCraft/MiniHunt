@@ -79,8 +79,8 @@ Countdown: 10
 
 #逃亡者警告消息(%wd是警告距离就是上面那个，%d是当前距离）
 WarnDistanceSafe: "%sM 内未检测到猎人"
-WarnDistanceClose: "警告! 猎人正在靠近！当前距离：%sM"
-HunterWarnDistanceClose: "提示! 在%dM内躲藏着逃亡者！"
+WarnDistanceClose: "警告! 猎人正在靠近！当前距离： %s 个方块"
+HunterWarnDistanceClose: "提示! 在 %d 个方块内躲藏着逃亡者！"
 
 #首次进入地狱提供抗火时长
 FireResistanceTime: 30

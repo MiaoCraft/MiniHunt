@@ -10,5 +10,7 @@ softdepend:
 commands:
   minihunt:
     description: 猎人游戏指令
+    aliases:
+      - mh
     usage: |
-      /<command> [about|hunter|runner|rstcd|players|start|want|help]
+      /mh [about|hunter|runner|rstcd|players|start|want|help]

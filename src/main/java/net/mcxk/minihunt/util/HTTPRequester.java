@@ -39,7 +39,7 @@ public class HTTPRequester {
                 }
             }
         } catch (IOException e) {
-            MiniHunt.getInstance().getLogger().info("HTTP请求失败！请到GitHub反馈此问题！");
+            MiniHunt.getInstance().getLogger().info("HTTP请求失败!请到GitHub反馈此问题!");
             e.printStackTrace();
         } finally {
             if (br != null) {
