@@ -14,3 +14,7 @@ commands:
       - mh
     usage: |
       /mh [about|hunter|runner|rstcd|players|start|want|help]
+
+permissions:
+  minihunt.admin:
+    description: 猎人游戏管理权限
