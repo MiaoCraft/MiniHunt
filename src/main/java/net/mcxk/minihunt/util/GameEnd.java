@@ -4,6 +4,7 @@ import net.mcxk.minihunt.MiniHunt;
 import net.mcxk.minihunt.game.Game;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -79,7 +80,7 @@ public class GameEnd {
                 Bukkit.shutdown();
                 return;
             case 2:
-                Bukkit.getScheduler().runTaskAsynchronously(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin(MiniHunt.pluginName)), task -> {
+                Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(MiniHunt.class), task -> {
                     MiniHunt.getInstance().getLogger().info("开始筛种...");
                     try (final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(Files.newOutputStream(propertiesFile.toPath()), StandardCharsets.UTF_8)) {
                         seed.set(SeedFilter.getSeed());

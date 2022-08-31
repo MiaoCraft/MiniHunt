@@ -4,8 +4,6 @@ main: net.mcxk.minihunt.MiniHunt
 authors: [ MossCG, LingMuQingYu, Crsuh2er0 ]
 website: https://github.com/MiaoCraft/MiniHunt
 api-version: 1.16
-loadbefore:
-  - MiniHunt
 softdepend:
   - AdvancedReplay
 
