@@ -5,6 +5,8 @@ package net.mcxk.minihunt.game;
  * @since 2022/5/8 22:08
  */
 public class ConstantCommand {
+    private ConstantCommand(){
+    }
 
     public static final String MINI_HUNT = "minihunt";
     public static final String ABOUT = "about";
