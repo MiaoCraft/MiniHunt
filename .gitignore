@@ -108,3 +108,15 @@ out/artifacts/MiniHunt_jar/MiniHuntv3.5\#Hotfix1.jar
 out/artifacts/MiniHunt_jar/MiniHuntv3.6.jar
 out/artifacts/MiniHunt_jar/MiniHuntv3.7.jar
 out/artifacts/MiniHunt_jar/MiniHuntv3.8.jar
+.idea/checkstyle-idea.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml
+.idea/libraries/Maven__com_google_guava_guava_21_0.xml
+.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml
+.idea/libraries/Maven__net_md_5_bungeecord_chat_1_16_R0_3.xml
+.idea/libraries/Maven__org_jetbrains_annotations_23_0_0.xml
+.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml
+.idea/libraries/Maven__org_spigotmc_spigot_api_1_16_1_R0_1_SNAPSHOT.xml
+.idea/libraries/Maven__org_yaml_snakeyaml_1_26.xml
+.idea/MiniHunt.iml
+.idea/modules.xml
