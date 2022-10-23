@@ -11,6 +11,7 @@ import com.google.gson.JsonParser;
 public class String2Json {
     private String2Json() {
     }
+
     public static JsonElement str2Json(String str) {
         return new JsonParser().parse(str);
     }

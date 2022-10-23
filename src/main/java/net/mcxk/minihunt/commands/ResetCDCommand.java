@@ -7,6 +7,7 @@ import net.mcxk.minihunt.game.GameStatus;
 import net.mcxk.minihunt.util.SendMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Crsuh2er0
@@ -17,7 +18,7 @@ public class ResetCDCommand {
     private ResetCDCommand() {
     }
 
-    public static boolean resetCD(CommandSender sender, Game game) {
+    public static boolean resetCD(@NotNull CommandSender sender, Game game) {
         if (!sender.hasPermission(ConstantCommand.MINI_HUNT_ADMIN)) {
             SendMessage.sendMessage(String.format("%s你没有执行该命令的权限。", ChatColor.RED), sender);
             return true;

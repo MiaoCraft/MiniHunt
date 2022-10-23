@@ -8,6 +8,7 @@ import net.mcxk.minihunt.util.SendMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Crsuh2er0
@@ -18,7 +19,7 @@ public class ChangeRoleCommand {
     private ChangeRoleCommand() {
     }
 
-    public static boolean changeRole(CommandSender sender, String arg, Game game) {
+    public static boolean changeRole(CommandSender sender, String arg, @NotNull Game game) {
         // 只有在游戏未开始时才能改变角色
         if (!GameStatus.WAITING_PLAYERS.equals(game.getStatus()) || !(sender instanceof Player)) {
             SendMessage.sendMessage(String.format("%s游戏已开始！", ChatColor.RED), sender);

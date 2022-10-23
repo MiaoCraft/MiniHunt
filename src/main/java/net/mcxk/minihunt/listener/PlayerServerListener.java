@@ -14,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class PlayerServerListener implements Listener {
      * 监听进入游戏的玩家
      */
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
-    public void join(PlayerJoinEvent event) {
+    public void join(@NotNull PlayerJoinEvent event) {
         final Player player = event.getPlayer();
         if (plugin.getGame().getStatus() == GameStatus.WAITING_PLAYERS) {
             if (plugin.getGame().playerJoining(player)) {
@@ -52,7 +53,7 @@ public class PlayerServerListener implements Listener {
                 plugin.getGame().getIntentionRoleMapping().put(player, PlayerRole.WAITING);
             }
         } else {
-            //处理玩家重连
+            // 处理玩家重连
             if (plugin.getGame().getInGamePlayers().stream().anyMatch(p -> p.getUniqueId().equals(player.getUniqueId()))) {
                 plugin.getGame().getInGamePlayers().removeIf(p -> p.getUniqueId().equals(player.getUniqueId()));
                 plugin.getGame().getInGamePlayers().add(player);
@@ -82,7 +83,7 @@ public class PlayerServerListener implements Listener {
      * 监听退出游戏的玩家
      */
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
-    public void quit(PlayerQuitEvent event) {
+    public void quit(@NotNull PlayerQuitEvent event) {
         final Player player = event.getPlayer();
         player.setGlowing(false);
         plugin.getGame().getIntentionRoleMapping().remove(player);

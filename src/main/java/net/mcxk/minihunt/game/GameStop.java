@@ -63,9 +63,9 @@ public class GameStop {
         }
         Bukkit.getOnlinePlayers().stream().filter(p -> !game.getInGamePlayers().contains(p)).forEach(p -> p.sendTitle(ChatColor.RED + "游戏结束", "The End", 0, 2000, 0));
         Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, () -> {
-            //开始结算阶段
+            // 开始结算阶段
             StatisticsBaker baker = new StatisticsBaker();
-            //计算输出最多的玩家
+            // 计算输出最多的玩家
             game.getGameEndingData().setDamageOutput(baker.getDamageMaster());
             game.getGameEndingData().setDamageReceive(baker.getDamageTakenMaster());
             game.getGameEndingData().setWalkMaster(baker.getWalkingMaster());
@@ -109,9 +109,9 @@ public class GameStop {
         }
         Bukkit.getOnlinePlayers().stream().filter(p -> !game.getInGamePlayers().contains(p)).forEach(p -> p.sendTitle(ChatColor.RED + "游戏结束", "The End", 0, 2000, 0));
         Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, () -> {
-            //开始结算阶段
+            // 开始结算阶段
             StatisticsBaker baker = new StatisticsBaker();
-            //计算输出最多的玩家
+            // 计算输出最多的玩家
             game.getGameEndingData().setDamageOutput(baker.getDamageMaster());
             game.getGameEndingData().setDamageReceive(baker.getDamageTakenMaster());
             game.getGameEndingData().setWalkMaster(baker.getWalkingMaster());

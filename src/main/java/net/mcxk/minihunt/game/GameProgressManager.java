@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -41,7 +42,7 @@ public class GameProgressManager {
         processProgress(progress, player);
     }
 
-    private void processProgress(GameProgress progress, Player thisPlayer) {
+    private void processProgress(@NotNull GameProgress progress, Player thisPlayer) {
         switch (progress) {
             case NOT_STARTED:
             case GAME_STARTING:

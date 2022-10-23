@@ -75,7 +75,7 @@ public class Util {
      * @param color  字体颜色
      * @return 消息组件
      */
-    public static TextComponent buildTextComponent(String text, Boolean isBold, ChatColor color) {
+    public static @NotNull TextComponent buildTextComponent(String text, Boolean isBold, ChatColor color) {
         return buildTextComponent(text, isBold, color, null);
     }
 
@@ -88,7 +88,7 @@ public class Util {
      * @param command 点击触发指令
      * @return 消息组件
      */
-    public static TextComponent buildTextComponent(String text, Boolean isBold, ChatColor color, String command) {
+    public static @NotNull TextComponent buildTextComponent(String text, Boolean isBold, ChatColor color, String command) {
         final TextComponent textComponent = new TextComponent(text);
         if (Objects.nonNull(isBold)) {
             textComponent.setBold(isBold);

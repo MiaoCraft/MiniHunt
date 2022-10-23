@@ -18,6 +18,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -38,7 +39,7 @@ public class PlayerInteractListener implements Listener {
     }
 
     @EventHandler
-    public void pickUp(EntityPickupItemEvent e) {
+    public void pickUp(@NotNull EntityPickupItemEvent e) {
         EntityType eType = e.getEntityType();
         if (eType == EntityType.PLAYER && MiniHunt.getInstance().getGame().getStatus() != GameStatus.GAME_STARTED) {
             e.setCancelled(true);
@@ -63,7 +64,7 @@ public class PlayerInteractListener implements Listener {
      * 主要是统计展示的对队友输出最多的玩家
      */
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
-    public void teamDamage(EntityDamageByEntityEvent event) {
+    public void teamDamage(@NotNull EntityDamageByEntityEvent event) {
         if (!(event.getDamager() instanceof Player)) {
             return;
         }

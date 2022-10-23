@@ -1,6 +1,7 @@
 package net.mcxk.minihunt.util;
 
 import net.mcxk.minihunt.MiniHunt;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +20,8 @@ import java.util.Objects;
 public class HTTPRequester {
     private HTTPRequester() {
     }
-    public static String request(String httpUrl) {
+
+    public static @NotNull String request(String httpUrl) {
         HttpURLConnection connection = null;
         InputStream is = null;
         BufferedReader br = null;
