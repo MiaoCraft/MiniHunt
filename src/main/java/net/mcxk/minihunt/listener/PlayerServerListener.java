@@ -26,9 +26,9 @@ import static net.mcxk.minihunt.util.Util.buildTextComponent;
 public class PlayerServerListener implements Listener {
     private static final BaseComponent[] SELECT_INTENTION_ROLE = new BaseComponent[]{
             buildTextComponent("请选择您意向的角色：", false, ChatColor.YELLOW),
-            buildTextComponent("逃亡者", true, ChatColor.RED, "/minihunt want runner"),
+            buildTextComponent("逃亡者", true, ChatColor.GREEN, "/minihunt want runner"),
             buildTextComponent(" - ", false, ChatColor.WHITE),
-            buildTextComponent("猎人(默认)", true, ChatColor.GREEN, "/minihunt want hunter"),
+            buildTextComponent("猎人(默认)", true, ChatColor.RED, "/minihunt want hunter"),
             buildTextComponent(" - ", false, ChatColor.WHITE),
             buildTextComponent("观战", true, ChatColor.GRAY, "/minihunt want waiting"),
     };

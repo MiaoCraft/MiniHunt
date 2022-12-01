@@ -38,13 +38,13 @@ public class ChangeRoleCommand {
             case ConstantCommand.HUNTER:
                 game.getIntentionRoleMapping().put(player, PlayerRole.HUNTER);
                 game.getInGamePlayers().add(player);
-                SendMessage.sendMessage(String.format("您选择了%s猎人%s！", ChatColor.GREEN, ChatColor.WHITE), sender);
+                SendMessage.sendMessage(String.format("您选择了%s猎人%s！", ChatColor.RED, ChatColor.WHITE), sender);
                 SendMessage.sendMessage("当意愿猎人人数过多时，将从中随机抽取部分逃亡者！", sender);
                 return true;
             case ConstantCommand.RUNNER:
                 game.getIntentionRoleMapping().put(player, PlayerRole.RUNNER);
                 game.getInGamePlayers().add(player);
-                SendMessage.sendMessage(String.format("您选择了%s逃亡者%s！", ChatColor.RED, ChatColor.WHITE), sender);
+                SendMessage.sendMessage(String.format("您选择了%s逃亡者%s！", ChatColor.GREEN, ChatColor.WHITE), sender);
                 SendMessage.sendMessage("当意愿逃亡者人数过多时，将从中随机抽取部分猎人！", sender);
                 return true;
             case ConstantCommand.WAITING:

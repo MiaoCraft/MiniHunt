@@ -22,8 +22,8 @@ public class CountDownWatcher {
     private int remains = MiniHunt.getInstance().getGame().getCountdown();
 
     public CountDownWatcher() {
-        roleNameMap.put(PlayerRole.HUNTER, ChatColor.GREEN + "猎人");
-        roleNameMap.put(PlayerRole.RUNNER, ChatColor.RED + "逃亡者");
+        roleNameMap.put(PlayerRole.HUNTER, ChatColor.RED + "猎人");
+        roleNameMap.put(PlayerRole.RUNNER, ChatColor.GREEN + "逃亡者");
         roleNameMap.put(PlayerRole.WAITING, ChatColor.GRAY + "旁观");
         bukkitTask = Bukkit.getScheduler().runTaskTimer(MiniHunt.getInstance(), new CountDownWatcherRunnable(), 0, 20);
     }

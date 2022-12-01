@@ -234,8 +234,8 @@ public class Game {
             LeaveEnding.leaveEnd(PlayerRole.RUNNER);
         } else {
             Bukkit.broadcastMessage("玩家：" + player.getName() + " 因长时间未能重新连接回对战而被从列表中剔除");
-            Bukkit.broadcastMessage(ChatColor.GREEN + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
-            Bukkit.broadcastMessage(ChatColor.RED + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
+            Bukkit.broadcastMessage(ChatColor.RED + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
+            Bukkit.broadcastMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
         }
     }
 
@@ -320,8 +320,8 @@ public class Game {
         Bukkit.broadcastMessage(ChatColor.AQUA + "猎人可以通过合成指南针来定位逃亡者的方向；逃亡者可以通过合成指南针摧毁猎人的指南针。");
         Bukkit.broadcastMessage(String.format("%s%s猎人可以左键方块刷新指南针，来更好的追踪逃亡者。", ChatColor.GREEN, ChatColor.BOLD));
         Bukkit.broadcastMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "祝君好运，末地见！");
-        Bukkit.broadcastMessage(ChatColor.GREEN + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
-        Bukkit.broadcastMessage(ChatColor.RED + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
+        Bukkit.broadcastMessage(ChatColor.RED + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
+        Bukkit.broadcastMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
         this.registerWatchers();
         plugin.getGame().getProgressManager().unlockProgress(GameProgress.GAME_STARTING, null);
     }
