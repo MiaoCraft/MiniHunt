@@ -1,5 +1,5 @@
 name: MiniHunt
-version: 3.8
+version: '${project.version}'
 main: net.mcxk.minihunt.MiniHunt
 authors: [ MossCG, LingMuQingYu, Crsuh2er0 ]
 website: https://github.com/MiaoCraft/MiniHunt
