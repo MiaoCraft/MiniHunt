@@ -1,5 +1,4 @@
 
-.idea/artifacts/HJYHunt_jar.xml
 .idea/compiler.xml
 .idea/encodings.xml
 .idea/jarRepositories.xml
@@ -7,7 +6,6 @@
 .idea/sonarlint/issuestore/index.pb
 .idea/uiDesigner.xml
 .idea/vcs.xml
-out/artifacts/HJYHunt_jar/HJYHunt.jar
 target/classes/config.yml
 target/classes/net/mcxk/minihunt/commands/AboutCommand.class
 target/classes/net/mcxk/minihunt/commands/ChangeRoleCommand.class

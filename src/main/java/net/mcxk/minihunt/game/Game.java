@@ -202,6 +202,8 @@ public class Game {
                 return;
             }
             if (endWhenAllLeave) {
+                this.inGamePlayers.remove(player);
+                GetPlayerAsRole.getRoleMapping().remove(player);
                 boolean runnerHasOnline = false;
                 boolean hunterHasOnline = false;
                 for (Player p : inGamePlayers) {
