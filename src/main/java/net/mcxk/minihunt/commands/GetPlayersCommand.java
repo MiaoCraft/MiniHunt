@@ -7,7 +7,6 @@ import net.mcxk.minihunt.game.PlayerRole;
 import net.mcxk.minihunt.util.GetPlayerAsRole;
 import net.mcxk.minihunt.util.SendMessage;
 import net.mcxk.minihunt.util.Util;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -28,9 +27,9 @@ public class GetPlayersCommand {
             SendMessage.sendMessage(String.format("%s游戏未开始! ", ChatColor.RED), sender);
             return true;
         }
-        Bukkit.broadcastMessage(MiniHunt.messageHead + ChatColor.YELLOW + ">猎人AND逃亡者<");
-        Bukkit.broadcastMessage(ChatColor.RED + "猎人: " + GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
-        Bukkit.broadcastMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
+        sender.sendMessage(MiniHunt.messageHead + ChatColor.YELLOW + ">猎人AND逃亡者<");
+        sender.sendMessage(ChatColor.RED + "猎人: " + GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
+        sender.sendMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
         return true;
     }
 
