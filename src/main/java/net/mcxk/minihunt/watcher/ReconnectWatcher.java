@@ -2,11 +2,7 @@ package net.mcxk.minihunt.watcher;
 
 import net.mcxk.minihunt.MiniHunt;
 import net.mcxk.minihunt.game.GameStatus;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReconnectWatcher {
     private final MiniHunt plugin = MiniHunt.getInstance();
@@ -23,19 +19,15 @@ public class ReconnectWatcher {
                 if (plugin.getGame().getStatus() != GameStatus.GAME_STARTED) {
                     return;
                 }
-                List<Player> removing = new ArrayList<>();
+                // 将超时未重连的玩家从队伍中移除
                 plugin.getGame().getReconnectTimer().forEach((key, value) -> {
                     if (System.currentTimeMillis() - value > reJoinTime) {
-                        removing.add(key);
+                        plugin.getGame().getReconnectTimer().remove(key);
+                        if (key.isOnline()) {
+                            return;
+                        }
+                        plugin.getGame().playerLeft(key);
                     }
-                });
-                // 将超时未重连的玩家从队伍中移除
-                removing.forEach(player -> {
-                    plugin.getGame().getReconnectTimer().remove(player);
-                    if (player.isOnline()) {
-                        return;
-                    }
-                    plugin.getGame().playerLeft(player);
                 });
             }
         }.runTaskTimer(plugin, 0, 20);

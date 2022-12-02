@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
+import java.util.Objects;
 
 import static net.mcxk.minihunt.util.Util.buildTextComponent;
 
@@ -54,7 +55,13 @@ public class PlayerServerListener implements Listener {
             }
         } else {
             // 处理玩家重连
-            if (plugin.getGame().getInGamePlayers().stream().anyMatch(p -> p.getUniqueId().equals(player.getUniqueId()))) {
+            PlayerRole playerRole;
+            try{
+                playerRole = GetPlayerAsRole.getRoleMapping().get(player);
+            } catch(Exception ignored){
+                playerRole = PlayerRole.WAITING;
+            }
+            if (plugin.getGame().getInGamePlayers().stream().anyMatch(p -> p.getUniqueId().equals(player.getUniqueId())) && !Objects.equals(PlayerRole.WAITING,playerRole)) {
                 plugin.getGame().getInGamePlayers().removeIf(p -> p.getUniqueId().equals(player.getUniqueId()));
                 plugin.getGame().getInGamePlayers().add(player);
 
