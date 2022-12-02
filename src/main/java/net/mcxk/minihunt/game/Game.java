@@ -42,6 +42,16 @@ public class Game {
     @Getter
     private final Set<Player> inGamePlayers = Sets.newCopyOnWriteArraySet();
     /**
+     * 在线猎人
+     */
+    @Getter
+    private final Set<Player> onlineHunter = Sets.newCopyOnWriteArraySet();
+    /**
+     * 在线逃亡者
+     */
+    @Getter
+    private final Set<Player> onlineRunner = Sets.newCopyOnWriteArraySet();
+    /**
      * 玩家重连计时器
      */
     @Getter
@@ -202,23 +212,20 @@ public class Game {
                 return;
             }
             if (endWhenAllLeave) {
-                this.inGamePlayers.remove(player);
-                GetPlayerAsRole.getRoleMapping().remove(player);
-                boolean runnerHasOnline = false;
-                boolean hunterHasOnline = false;
-                for (Player p : inGamePlayers) {
-                    if (GetPlayerAsRole.getRoleMapping().get(p) == PlayerRole.RUNNER) {
-                        runnerHasOnline = true;
-                    }
-                    if (GetPlayerAsRole.getRoleMapping().get(p) == PlayerRole.HUNTER) {
-                        hunterHasOnline = true;
-                    }
-                }
-                if (!runnerHasOnline) {
-                    LeaveEnding.leaveEnd(PlayerRole.HUNTER);
-                }
-                if (!hunterHasOnline) {
-                    LeaveEnding.leaveEnd(PlayerRole.RUNNER);
+                switch (GetPlayerAsRole.getRoleMapping().get(player)) {
+                    case HUNTER:
+                        this.onlineHunter.remove(player);
+                        if(onlineHunter.isEmpty()){
+                            LeaveEnding.leaveEnd(PlayerRole.RUNNER);
+                        }
+                        break;
+                    case RUNNER:
+                        this.onlineRunner.remove(player);
+                        if(onlineRunner.isEmpty()){
+                            LeaveEnding.leaveEnd(PlayerRole.HUNTER);
+                        }
+                        break;
+                    default:
                 }
             } else {
                 this.reconnectTimer.put(player, System.currentTimeMillis());
@@ -289,16 +296,19 @@ public class Game {
             } else {
                 Player selected = noRolesPlayers.get(random.nextInt(noRolesPlayers.size()));
                 roleMapTemp.put(selected, PlayerRole.RUNNER);
+                onlineRunner.add(selected);
                 noRolesPlayers.remove(selected);
             }
         }
         noRolesPlayers.forEach(p -> roleMapTemp.put(p, PlayerRole.HUNTER));
+        onlineHunter.addAll(noRolesPlayers);
         GetPlayerAsRole.setRoleMapping(new ConcurrentHashMap<>(roleMapTemp));
         Bukkit.broadcastMessage("正在将逃亡者随机传送到远离猎人的位置...");
         // 先给第一个runner找个位置
         Location airDropLoc = airDrop(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).get(0).getWorld().getSpawnLocation());
         // 再把其他runner传送过去
         GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).forEach(runner -> runner.teleport(airDropLoc));
+
         GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(p -> p.teleport(p.getWorld().getSpawnLocation()));
         Bukkit.broadcastMessage("设置游戏规则...");
         inGamePlayers.forEach(p -> {
