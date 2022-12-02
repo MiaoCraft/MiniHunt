@@ -2,6 +2,7 @@ package net.mcxk.minihunt.listener;
 
 import net.mcxk.minihunt.MiniHunt;
 import net.mcxk.minihunt.game.GameStatus;
+import net.mcxk.minihunt.game.GameStop;
 import net.mcxk.minihunt.game.PlayerRole;
 import net.mcxk.minihunt.util.GetPlayerAsRole;
 import net.md_5.bungee.api.ChatColor;
@@ -55,13 +56,7 @@ public class PlayerServerListener implements Listener {
             }
         } else {
             // 处理玩家重连
-            PlayerRole playerRole;
-            try{
-                playerRole = GetPlayerAsRole.getRoleMapping().get(player);
-            } catch(Exception ignored){
-                playerRole = PlayerRole.WAITING;
-            }
-            if (plugin.getGame().getInGamePlayers().stream().anyMatch(p -> p.getUniqueId().equals(player.getUniqueId())) && !Objects.equals(PlayerRole.WAITING,playerRole)) {
+            if (plugin.getGame().getInGamePlayers().stream().anyMatch(p -> p.getUniqueId().equals(player.getUniqueId())) && !Objects.equals(GameStatus.ENDED, GameStop.getGame().getStatus())) {
                 plugin.getGame().getInGamePlayers().removeIf(p -> p.getUniqueId().equals(player.getUniqueId()));
                 plugin.getGame().getInGamePlayers().add(player);
 

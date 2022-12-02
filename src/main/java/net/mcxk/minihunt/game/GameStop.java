@@ -1,5 +1,6 @@
 package net.mcxk.minihunt.game;
 
+import lombok.Getter;
 import net.mcxk.minihunt.MiniHunt;
 import net.mcxk.minihunt.replay.GameRecord;
 import net.mcxk.minihunt.util.GetPlayerAsRole;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
  */
 public class GameStop {
     static MiniHunt plugin = MiniHunt.getInstance();
+    @Getter
     static Game game = new Game();
 
     private GameStop() {
