@@ -236,16 +236,9 @@ public class Game {
     public void playerLeft(Player player) {
         GetPlayerAsRole.getRoleMapping().remove(player);
         this.inGamePlayers.remove(player);
-
-        if (GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).isEmpty()) {
-            LeaveEnding.leaveEnd(PlayerRole.HUNTER);
-        } else if (GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).isEmpty()) {
-            LeaveEnding.leaveEnd(PlayerRole.RUNNER);
-        } else {
-            Bukkit.broadcastMessage("玩家：" + player.getName() + " 因长时间未能重新连接回对战而被从列表中剔除");
-            Bukkit.broadcastMessage(ChatColor.RED + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
-            Bukkit.broadcastMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
-        }
+        Bukkit.broadcastMessage("玩家：" + player.getName() + " 因长时间未能重新连接回对战而被从列表中剔除");
+        Bukkit.broadcastMessage(ChatColor.RED + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
+        Bukkit.broadcastMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
     }
 
     public void start() {

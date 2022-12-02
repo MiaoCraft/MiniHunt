@@ -2,7 +2,10 @@ package net.mcxk.minihunt.game;
 
 import net.mcxk.minihunt.MiniHunt;
 import net.mcxk.minihunt.util.GameEnd;
+import net.mcxk.minihunt.util.GetPlayerAsRole;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Crsuh2er0
@@ -15,7 +18,22 @@ public class LeaveEnding {
     private LeaveEnding() {
     }
 
-    public static void leaveEnd(PlayerRole winner) {
+    public static void leaveEnd(@NotNull PlayerRole winner) {
+        switch (winner){
+            case HUNTER:
+                for(Player p : GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER)){
+                    GetPlayerAsRole.getRoleMapping().remove(p);
+                    GetPlayerAsRole.getRoleMapping().put(p,PlayerRole.WAITING);
+                }
+                break;
+            case RUNNER:
+                for(Player p : GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER)){
+                    GetPlayerAsRole.getRoleMapping().remove(p);
+                    GetPlayerAsRole.getRoleMapping().put(p,PlayerRole.WAITING);
+                }
+                break;
+            default:
+        }
         if (game.isJudgeWinnerWhenLeaveEnd()) {
             GameStop.stop(winner);
         } else {
