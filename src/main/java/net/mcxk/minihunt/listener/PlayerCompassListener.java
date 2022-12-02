@@ -112,7 +112,7 @@ public class PlayerCompassListener implements Listener {
             // 全套铁甲以上护甲
             if (Arrays.stream(armours).allMatch(r -> r)) {
                 plugin.getGame().setFirstAllArmourPlayer(player);
-                Bukkit.broadcastMessage(String.format("%s猎人%s最快达成全套铁甲以上护具！", org.bukkit.ChatColor.YELLOW, player.getName()));
+                Bukkit.broadcastMessage(String.format("%s猎人%s最快达成全套铁甲以上护具! ", org.bukkit.ChatColor.YELLOW, player.getName()));
             }
         }
     }
@@ -152,7 +152,7 @@ public class PlayerCompassListener implements Listener {
         if (closestRunner == null) {
             event.getPlayer().sendMessage("追踪失败，没有任何逃亡者和您所处的世界相同");
         } else {
-            TextComponent component = new TextComponent("成功探测到距离您最近的逃亡者！正在追踪: %s".replace("%s", closestRunner.getName()));
+            TextComponent component = new TextComponent("成功探测到距离您最近的逃亡者! 正在追踪: %s".replace("%s", closestRunner.getName()));
             component.setColor(ChatColor.AQUA);
             if (event.getPlayer().getWorld().getEnvironment() == World.Environment.NORMAL) {
                 event.getPlayer().setCompassTarget(closestRunner.getLocation());

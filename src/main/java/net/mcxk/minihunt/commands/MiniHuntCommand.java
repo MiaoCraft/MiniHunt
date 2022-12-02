@@ -43,7 +43,7 @@ public class MiniHuntCommand implements CommandExecutor {
             case ConstantCommand.FORCE_START:
                 return ForceStartCommand.forceStart(sender, game);
             default:
-                SendMessage.sendMessage(String.format("%s未知命令！输入/minihunt help查看指令列表。", ChatColor.RED), sender);
+                SendMessage.sendMessage(String.format("%s未知命令! 输入/minihunt help查看指令列表。", ChatColor.RED), sender);
                 return true;
         }
     }

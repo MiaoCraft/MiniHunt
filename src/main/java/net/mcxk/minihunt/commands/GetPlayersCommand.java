@@ -24,8 +24,8 @@ public class GetPlayersCommand {
     }
 
     public static boolean getPlayers(Game game, CommandSender sender) {
-        if (game.getStatus() != GameStatus.WAITING_PLAYERS) {
-            SendMessage.sendMessage(String.format("%s游戏未开始！", ChatColor.RED), sender);
+        if (game.getStatus() != GameStatus.GAME_STARTED) {
+            SendMessage.sendMessage(String.format("%s游戏未开始! ", ChatColor.RED), sender);
             return true;
         }
         Bukkit.broadcastMessage(MiniHunt.messageHead + ChatColor.YELLOW + ">猎人AND逃亡者<");

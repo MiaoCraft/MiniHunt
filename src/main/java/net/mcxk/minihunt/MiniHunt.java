@@ -55,7 +55,7 @@ public final class MiniHunt extends JavaPlugin {
         }
         Plugin pluginAdvancedReplay = Bukkit.getPluginManager().getPlugin("AdvancedReplay");
         if (pluginAdvancedReplay != null) {
-            getLogger().info("检测到AdvancedReplay插件，回放功能已启用！");
+            getLogger().info("检测到AdvancedReplay插件，回放功能已启用!");
         }
         game.switchWorldRuleForReady(false);
         Bukkit.getPluginManager().registerEvents(new PlayerServerListener(), this);

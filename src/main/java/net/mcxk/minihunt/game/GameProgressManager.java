@@ -94,7 +94,7 @@ public class GameProgressManager {
             Bukkit.broadcastMessage(ChatColor.GREEN + "奖励补给已发放到您的背包中，请查收!");
         }
         if (buff) {
-            Bukkit.broadcastMessage(ChatColor.GREEN + "奖励药水效果已应用，请查看！");
+            Bukkit.broadcastMessage(ChatColor.GREEN + "奖励药水效果已应用，请查看! ");
         }
     }
 }

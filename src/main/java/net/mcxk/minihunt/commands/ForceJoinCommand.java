@@ -34,7 +34,7 @@ public class ForceJoinCommand {
             GetPlayerAsRole.getRoleMapping().put(player, PlayerRole.RUNNER);
         }
         player.setGameMode(GameMode.SURVIVAL);
-        Bukkit.broadcastMessage(MiniHunt.messageHead + "玩家 " + sender.getName() + " 强制加入了游戏！ 身份：" + type);
+        Bukkit.broadcastMessage(MiniHunt.messageHead + "玩家 " + sender.getName() + " 强制加入了游戏!  身份：" + type);
         return true;
     }
 }

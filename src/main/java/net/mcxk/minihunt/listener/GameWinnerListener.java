@@ -55,7 +55,7 @@ public class GameWinnerListener implements Listener {
                     && Objects.isNull(plugin.getGame().getFirstKillPlayer())) {
                 // 记录逃亡者首次击杀猎人
                 plugin.getGame().setFirstKillPlayer(event.getEntity());
-                Bukkit.broadcastMessage(String.format("%s逃亡者%s首次击杀猎人%s！", ChatColor.YELLOW, killerPlayer.getName(), event.getEntity().getName()));
+                Bukkit.broadcastMessage(String.format("%s逃亡者%s首次击杀猎人%s! ", ChatColor.YELLOW, killerPlayer.getName(), event.getEntity().getName()));
             }
         }
     }
@@ -72,7 +72,7 @@ public class GameWinnerListener implements Listener {
             Optional<PlayerRole> role = MiniHunt.getInstance().getGame().getPlayerRole(((Player) event.getDamager()));
             if (role.isPresent() && role.get() == PlayerRole.HUNTER) {
                 event.setCancelled(true);
-                event.getEntity().sendMessage(ChatColor.RED + "猎人是末影龙的好伙伴，你不可以对龙造成伤害！");
+                event.getEntity().sendMessage(ChatColor.RED + "猎人是末影龙的好伙伴，你不可以对龙造成伤害! ");
                 return;
             }
         }

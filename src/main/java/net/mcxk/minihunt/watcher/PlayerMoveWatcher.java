@@ -26,12 +26,12 @@ public class PlayerMoveWatcher {
                         if (role.isPresent() && role.get() == PlayerRole.RUNNER) {
                             if (!runnerNether && environment == World.Environment.NETHER) {
                                 runnerNether = true;
-                                Bukkit.broadcastMessage(String.format("%s逃亡者 %s 已到达 下界 维度！", ChatColor.YELLOW, player.getName()));
+                                Bukkit.broadcastMessage(String.format("%s逃亡者 %s 已到达 下界 维度! ", ChatColor.YELLOW, player.getName()));
                                 plugin.getGame().setFirstEnterNetherPlayer(player);
                             }
                             if (!runnerTheEnd && environment == World.Environment.THE_END) {
                                 runnerTheEnd = true;
-                                Bukkit.broadcastMessage(String.format("%s逃亡者 %s 已到达 末地 维度！", ChatColor.YELLOW, player.getName()));
+                                Bukkit.broadcastMessage(String.format("%s逃亡者 %s 已到达 末地 维度! ", ChatColor.YELLOW, player.getName()));
                             }
                         }
                     }

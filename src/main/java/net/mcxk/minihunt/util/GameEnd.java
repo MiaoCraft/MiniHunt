@@ -31,7 +31,7 @@ public class GameEnd {
         Bukkit.getOnlinePlayers().forEach(player -> {
             if (player.isEmpty() && player.isOnline()) {
                 // 主动踢出玩家
-                player.kickPlayer("游戏结束，后台正在重置地图，预计需要60秒！");
+                player.kickPlayer("游戏结束，后台正在重置地图，预计需要60秒! ");
             }
         });
 
@@ -63,7 +63,7 @@ public class GameEnd {
                         }
                     }
                     if (StringUtils.isEmpty(seed.get())) {
-                        MiniHunt.getInstance().getLogger().info("种子行数配置错误！将使用随机种子！");
+                        MiniHunt.getInstance().getLogger().info("种子行数配置错误! 将使用随机种子! ");
                         Bukkit.shutdown();
                         return;
                     }
@@ -92,7 +92,7 @@ public class GameEnd {
                 });
                 return;
             default:
-                MiniHunt.getInstance().getLogger().info("种子获取方式配置错误！将使用随机种子！");
+                MiniHunt.getInstance().getLogger().info("种子获取方式配置错误! 将使用随机种子! ");
                 Bukkit.shutdown();
         }
     }

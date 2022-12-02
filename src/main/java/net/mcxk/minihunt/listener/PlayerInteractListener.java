@@ -91,7 +91,7 @@ public class PlayerInteractListener implements Listener {
                         && Objects.isNull(plugin.getGame().getFirstTeamPlayer())) {
                     // 记录首次攻击到逃亡者玩家
                     plugin.getGame().setFirstTeamPlayer(player1);
-                    Bukkit.broadcastMessage(String.format("%s猎人%s首次攻击到逃亡者%s！", ChatColor.YELLOW, player2.getName(), player1.getName()));
+                    Bukkit.broadcastMessage(String.format("%s猎人%s首次攻击到逃亡者%s! ", ChatColor.YELLOW, player2.getName(), player1.getName()));
                 }
                 double historyDamage = plugin.getGame().getTeamDamageData().getOrDefault(player2, 0.0d);
                 // 累计造成的伤害

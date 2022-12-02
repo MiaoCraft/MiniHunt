@@ -25,7 +25,7 @@ public class ForceStartCommand {
             return true;
         }
         if (game.getStatus() != net.mcxk.minihunt.game.GameStatus.WAITING_PLAYERS) {
-            SendMessage.sendMessage(String.format("%s游戏已开始！", ChatColor.RED), sender);
+            SendMessage.sendMessage(String.format("%s游戏已开始! ", ChatColor.RED), sender);
             return true;
         }
         game.start();

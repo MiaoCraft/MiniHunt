@@ -160,10 +160,10 @@ public class Game {
         this.compassUnlocked = unlocked;
         if (unlocked) {
             GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(p -> p.getInventory().addItem(new ItemStack(Material.COMPASS, 1)));
-            Bukkit.broadcastMessage(ChatColor.YELLOW + "猎人已解锁追踪指南针！逃亡者的位置已经暴露！");
+            Bukkit.broadcastMessage(ChatColor.YELLOW + "猎人已解锁追踪指南针! 逃亡者的位置已经暴露! ");
         } else {
             GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(p -> p.getInventory().remove(Material.COMPASS));
-            Bukkit.broadcastMessage(ChatColor.YELLOW + "猎人的追踪指南针被破坏失效，需要重新解锁！");
+            Bukkit.broadcastMessage(ChatColor.YELLOW + "猎人的追踪指南针被破坏失效，需要重新解锁! ");
         }
         // 清除合成的指南针
         GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).forEach(p -> p.getInventory().remove(Material.COMPASS));
@@ -194,7 +194,7 @@ public class Game {
             reconnectCount.put(player, (byte) (reconnectCount.get(player) + 1));
             if (reconnectCount.get(player) > 3) {
                 player.setHealth(0);
-                Bukkit.broadcastMessage(String.format("%s%s 因为重连次数过多已死亡！", ChatColor.RED, player.getName()));
+                Bukkit.broadcastMessage(String.format("%s%s 因为重连次数过多已死亡! ", ChatColor.RED, player.getName()));
             }
         }
         if (inGamePlayers.size() < maxPlayers) {
@@ -316,7 +316,7 @@ public class Game {
             GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).forEach(p -> p.getInventory().addItem(new ItemStack(Material.COMPASS, 1)));
         }
         switchWorldRuleForReady(true);
-        Bukkit.broadcastMessage("游戏开始！");
+        Bukkit.broadcastMessage("游戏开始! ");
         Bukkit.broadcastMessage(ChatColor.AQUA + "欢迎来到 " + ChatColor.GREEN + plugin.getName() + " " + ChatColor.AQUA + "!");
         Bukkit.broadcastMessage(ChatColor.AQUA + "在本游戏中，将会有 " + ChatColor.YELLOW + runners + ChatColor.AQUA + " 名玩家扮演逃亡者，其余玩家扮演猎人");
         Bukkit.broadcastMessage(ChatColor.RED + "猎人需要阻止逃亡者击杀末影龙或击杀逃亡者以取得胜利。");
@@ -324,7 +324,7 @@ public class Game {
         Bukkit.broadcastMessage(ChatColor.AQUA + "在游戏过程中，当你解锁特定的游戏阶段时，全体玩家将会获得阶段奖励，可能是特定物品也可能是增益效果。");
         Bukkit.broadcastMessage(ChatColor.AQUA + "猎人可以通过合成指南针来定位逃亡者的方向；逃亡者可以通过合成指南针摧毁猎人的指南针。");
         Bukkit.broadcastMessage(String.format("%s%s猎人可以左键方块刷新指南针，来更好的追踪逃亡者。", ChatColor.GREEN, ChatColor.BOLD));
-        Bukkit.broadcastMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "祝君好运，末地见！");
+        Bukkit.broadcastMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "祝君好运，末地见! ");
         Bukkit.broadcastMessage(ChatColor.RED + "猎人: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList())));
         Bukkit.broadcastMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
         this.registerWatchers();
@@ -444,7 +444,7 @@ public class Game {
         loc.add((double) random.nextInt(XRandom) + XBasic, 0, (double) random.nextInt(YRandom) + YBasic);
         final World world = loc.getWorld();
         if (Objects.isNull(world)) {
-            throw new RuntimeException("所在世界获取失败！");
+            throw new RuntimeException("所在世界获取失败! ");
         }
         // 获取当前位置的地表
         loc = world.getHighestBlockAt(loc).getLocation();

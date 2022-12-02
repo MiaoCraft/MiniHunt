@@ -39,7 +39,7 @@ public class GameStop {
 
     private static void stopMethod(PlayerRole winner) {
         game.setStatus(GameStatus.ENDED);
-        Bukkit.broadcastMessage(ChatColor.YELLOW + "游戏结束! 服务器将在 60 秒后重新启动！");
+        Bukkit.broadcastMessage(ChatColor.YELLOW + "游戏结束! 服务器将在 60 秒后重新启动! ");
         String runnerNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList()));
         String hunterNames = Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
 

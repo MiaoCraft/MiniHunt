@@ -77,7 +77,7 @@ public class CountDownWatcher {
             }
 
             if (!game.isConfirmPrepare() && game.getInGamePlayers().size() >= game.getMaxPlayers() && remains > SHORTER) {
-                Bukkit.broadcastMessage("玩家到齐，倒计时缩短！");
+                Bukkit.broadcastMessage("玩家到齐，倒计时缩短! ");
             }
         }
     }

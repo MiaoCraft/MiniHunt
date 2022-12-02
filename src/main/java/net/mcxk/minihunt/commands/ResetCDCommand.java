@@ -20,11 +20,11 @@ public class ResetCDCommand {
 
     public static boolean resetCD(@NotNull CommandSender sender, Game game) {
         if (!sender.hasPermission(ConstantCommand.MINI_HUNT_ADMIN)) {
-            SendMessage.sendMessage(String.format("%s你没有执行该命令的权限。", ChatColor.RED), sender);
+            SendMessage.sendMessage(String.format("%s你没有执行该命令的权限", ChatColor.RED), sender);
             return true;
         }
         if (game.getStatus() != GameStatus.WAITING_PLAYERS) {
-            SendMessage.sendMessage(String.format("%s游戏未开始！", ChatColor.RED), sender);
+            SendMessage.sendMessage(String.format("%s游戏未开始! ", ChatColor.RED), sender);
             return true;
         }
         MiniHunt.getInstance().getCountDownWatcher().resetCountdown();
