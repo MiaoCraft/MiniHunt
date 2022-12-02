@@ -56,7 +56,10 @@ public class PlayerServerListener implements Listener {
             }
         } else {
             // 处理玩家重连
-            if (plugin.getGame().getInGamePlayers().stream().anyMatch(p -> p.getUniqueId().equals(player.getUniqueId())) && !Objects.equals(GameStatus.ENDED, GameStop.getGame().getStatus())) {
+            if(Objects.equals(GameStatus.ENDED, GameStop.getGame().getStatus())){
+                player.setGameMode(GameMode.SPECTATOR);
+                player.sendMessage("游戏已经结束，您现在处于观战状态");
+            } else if (plugin.getGame().getInGamePlayers().stream().anyMatch(p -> p.getUniqueId().equals(player.getUniqueId()))) {
                 plugin.getGame().getInGamePlayers().removeIf(p -> p.getUniqueId().equals(player.getUniqueId()));
                 plugin.getGame().getInGamePlayers().add(player);
 
