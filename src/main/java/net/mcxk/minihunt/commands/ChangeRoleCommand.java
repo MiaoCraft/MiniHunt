@@ -20,8 +20,12 @@ public class ChangeRoleCommand {
     }
 
     public static boolean changeRole(CommandSender sender, String arg, @NotNull Game game) {
+        if(!(sender instanceof Player)){
+            sender.sendMessage("请在游戏中输入此命令!");
+            return true;
+        }
         // 只有在游戏未开始时才能改变角色
-        if (!GameStatus.WAITING_PLAYERS.equals(game.getStatus()) || !(sender instanceof Player)) {
+        if (!GameStatus.WAITING_PLAYERS.equals(game.getStatus())) {
             SendMessage.sendMessage(String.format("%s游戏已开始! ", ChatColor.RED), sender);
             return true;
         }

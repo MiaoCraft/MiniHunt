@@ -22,7 +22,11 @@ public class ForceJoinCommand {
     }
 
     public static boolean forceJoin(String type, CommandSender sender, Game game) {
-        if (!sender.hasPermission(ConstantCommand.MINI_HUNT_ADMIN) || !(sender instanceof Player)) {
+        if(!(sender instanceof Player)){
+            sender.sendMessage("请在游戏中输入此命令!");
+            return true;
+        }
+        if (!sender.hasPermission(ConstantCommand.MINI_HUNT_ADMIN)) {
             SendMessage.sendMessage(String.format("%s你没有执行该命令的权限。", ChatColor.RED), sender);
             return true;
         }
