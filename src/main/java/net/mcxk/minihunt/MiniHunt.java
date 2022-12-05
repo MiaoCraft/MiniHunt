@@ -7,6 +7,7 @@ import net.mcxk.minihunt.game.ConstantCommand;
 import net.mcxk.minihunt.game.Game;
 import net.mcxk.minihunt.listener.*;
 import net.mcxk.minihunt.watcher.CountDownWatcher;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
@@ -64,6 +65,7 @@ public final class MiniHunt extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ProgressDetectingListener(), this);
         Bukkit.getPluginManager().registerEvents(new GameWinnerListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
+        Metrics metrics = new Metrics(this, 17016);
     }
 
     @Override
