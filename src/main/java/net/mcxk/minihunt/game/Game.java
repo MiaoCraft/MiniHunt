@@ -296,6 +296,14 @@ public class Game {
         noRolesPlayers.forEach(p -> roleMapTemp.put(p, PlayerRole.HUNTER));
         onlineHunter.addAll(noRolesPlayers);
         GetPlayerAsRole.setRoleMapping(new ConcurrentHashMap<>(roleMapTemp));
+        System.out.println("Runners:");
+        for(Player p : onlineRunner){
+            System.out.println(p.getName());
+        }
+        System.out.println("Hunters:");
+        for(Player p : onlineHunter){
+            System.out.println(p.getName());
+        }
         Bukkit.broadcastMessage("正在将逃亡者随机传送到远离猎人的位置...");
         // 先给第一个runner找个位置
         Location airDropLoc = airDrop(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).get(0).getWorld().getSpawnLocation());
