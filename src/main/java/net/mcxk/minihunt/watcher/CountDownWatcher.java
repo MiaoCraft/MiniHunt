@@ -40,10 +40,8 @@ public class CountDownWatcher {
             if (game.getStatus() != GameStatus.WAITING_PLAYERS) {
                 Bukkit.getScheduler().cancelTask(bukkitTask.getTaskId());
             }
-
+            String title = ChatColor.AQUA + "" + game.getInGamePlayers().size() + " " + ChatColor.WHITE + "/ " + ChatColor.AQUA + game.getMinPlayers();
             if (game.getInGamePlayers().size() < game.getMinPlayers()) {
-                String title;
-                title = ChatColor.AQUA + "" + game.getInGamePlayers().size() + " " + ChatColor.WHITE + "/ " + ChatColor.AQUA + game.getMinPlayers();
                 Bukkit.getOnlinePlayers().forEach(p -> {
                     final PlayerRole playerRole = game.getIntentionRoleMapping().get(p);
                     if (PlayerRole.WAITING.equals(playerRole)) {
@@ -58,8 +56,17 @@ public class CountDownWatcher {
                 remains = MiniHunt.getInstance().getGame().getCountdown();
             } else {
                 Bukkit.getOnlinePlayers().forEach(p -> {
+                    final PlayerRole playerRole = game.getIntentionRoleMapping().get(p);
                     final int size = game.getInGamePlayers().size();
-                    String subTitle = String.format("游戏即将开始... [%s/%s]", size, game.getMaxPlayers());
+                    String subTitle;
+                    if (PlayerRole.WAITING.equals(playerRole)) {
+                        subTitle = String.format("游戏即将开始....[%s/%s][%s旁观%s]",size, game.getMaxPlayers(), ChatColor.GRAY, ChatColor.WHITE);
+                    } else if (PlayerRole.HUNTER.equals(playerRole)){
+                        subTitle = String.format("游戏即将开始....[%s/%s][%s猎人%s]",size, game.getMaxPlayers(),ChatColor.RED ,ChatColor.WHITE);
+                    } else {
+                        subTitle = String.format("游戏即将开始....[%s/%s][%s逃亡者%s]",size, game.getMaxPlayers(),ChatColor.GREEN ,ChatColor.WHITE);
+                    }
+                    p.sendTitle(title, subTitle, 0, 40, 0);
                     if (game.isConfirmPrepare()) {
                         subTitle = String.format("所有玩家准备就绪，游戏即将开始... [%s/%s]", size, size);
                     }
