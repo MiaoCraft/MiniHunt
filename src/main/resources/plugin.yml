@@ -18,3 +18,4 @@ commands:
 permissions:
   minihunt.admin:
     description: 猎人游戏管理权限
+    default: op
