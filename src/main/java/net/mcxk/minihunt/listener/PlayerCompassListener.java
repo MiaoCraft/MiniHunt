@@ -127,7 +127,7 @@ public class PlayerCompassListener implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.LEFT_CLICK_AIR && event.getAction() != Action.LEFT_CLICK_BLOCK) {
             return;
         }
-        if (event.getItem() == null || event.getItem().getType() != Material.COMPASS) {
+        if (Objects.isNull(event.getItem()) || event.getItem().getType() != Material.COMPASS) {
             return;
         }
         if (!plugin.getGame().isCompassUnlocked()) {
@@ -142,14 +142,17 @@ public class PlayerCompassListener implements Listener {
         double minDistance = Double.MAX_VALUE;
         double distance;
         for (Player runner : GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER)) {
+            if (event.getPlayer().getWorld() != runner.getWorld() || runner.getGameMode() == GameMode.SPECTATOR) {
+                continue;
+            }
             distance = event.getPlayer().getLocation().distance(runner.getLocation());
-            if (runner.getWorld() == event.getPlayer().getWorld() && runner.getGameMode() != GameMode.SPECTATOR && distance < minDistance) {
+            if (runner.getGameMode() != GameMode.SPECTATOR && distance < minDistance) {
                 closestRunner = runner;
                 minDistance = distance;
             }
         }
 
-        if (closestRunner == null) {
+        if (Objects.isNull(closestRunner)) {
             event.getPlayer().sendMessage("追踪失败，没有任何逃亡者和您所处的世界相同");
         } else {
             TextComponent component = new TextComponent("成功探测到距离您最近的逃亡者! 正在追踪: %s".replace("%s", closestRunner.getName()));
@@ -158,7 +161,7 @@ public class PlayerCompassListener implements Listener {
                 event.getPlayer().setCompassTarget(closestRunner.getLocation());
             } else {
                 CompassMeta compassMeta = (CompassMeta) event.getItem().getItemMeta();
-                if (compassMeta == null) {
+                if (Objects.isNull(compassMeta)) {
                     event.getPlayer().sendMessage("错误：指南针损坏，请联系服务器管理员报告BUG.");
                 } else {
                     compassMeta.setLodestone(closestRunner.getLocation());
