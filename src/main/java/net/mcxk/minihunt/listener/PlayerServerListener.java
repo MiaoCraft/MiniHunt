@@ -1,6 +1,7 @@
 package net.mcxk.minihunt.listener;
 
 import net.mcxk.minihunt.MiniHunt;
+import net.mcxk.minihunt.commands.GetPlayersCommand;
 import net.mcxk.minihunt.game.GameStatus;
 import net.mcxk.minihunt.game.GameStop;
 import net.mcxk.minihunt.game.PlayerRole;
@@ -56,7 +57,7 @@ public class PlayerServerListener implements Listener {
             }
         } else {
             // 处理玩家重连
-            if(Objects.equals(GameStatus.ENDED, GameStop.getGame().getStatus())){
+            if (Objects.equals(GameStatus.ENDED, GameStop.getGame().getStatus())) {
                 player.setGameMode(GameMode.SPECTATOR);
                 player.sendMessage("游戏已经结束，您现在处于观战状态");
             } else if (plugin.getGame().getInGamePlayers().stream().anyMatch(p -> p.getUniqueId().equals(player.getUniqueId()))) {
@@ -80,6 +81,7 @@ public class PlayerServerListener implements Listener {
             } else {
                 player.setGameMode(GameMode.SPECTATOR);
                 player.sendMessage("游戏已经开始，您现在处于观战状态");
+                GetPlayersCommand.getPlayersMethod(player);
             }
         }
     }

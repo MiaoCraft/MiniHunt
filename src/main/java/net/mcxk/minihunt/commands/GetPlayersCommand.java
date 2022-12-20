@@ -10,6 +10,7 @@ import net.mcxk.minihunt.util.Util;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Collectors;
 
@@ -22,15 +23,18 @@ public class GetPlayersCommand {
     private GetPlayersCommand() {
     }
 
-    public static boolean getPlayers(Game game, CommandSender sender) {
+    public static boolean getPlayers(@NotNull Game game, CommandSender sender) {
         if (game.getStatus() != GameStatus.GAME_STARTED) {
             SendMessage.sendMessage(String.format("%s游戏未开始! ", ChatColor.RED), sender);
-            return true;
+        } else {
+            getPlayersMethod(sender);
         }
-        sender.sendMessage(MiniHunt.messageHead + ChatColor.YELLOW + ">猎人AND逃亡者<");
-        sender.sendMessage(ChatColor.RED + "猎人: " + GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
-        sender.sendMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
         return true;
     }
 
+    public static void getPlayersMethod(@NotNull CommandSender sender) {
+        sender.sendMessage(MiniHunt.messageHead + ChatColor.YELLOW + ">猎人AND逃亡者<");
+        sender.sendMessage(ChatColor.RED + "猎人: " + GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER).stream().map(Player::getName).collect(Collectors.toList()));
+        sender.sendMessage(ChatColor.GREEN + "逃亡者: " + Util.list2String(GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER).stream().map(Player::getName).collect(Collectors.toList())));
+    }
 }
