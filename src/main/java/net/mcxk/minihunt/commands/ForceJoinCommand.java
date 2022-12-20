@@ -22,7 +22,7 @@ public class ForceJoinCommand {
     }
 
     public static boolean forceJoin(String type, CommandSender sender, Game game) {
-        if(!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             sender.sendMessage("请在游戏中输入此命令!");
             return true;
         }

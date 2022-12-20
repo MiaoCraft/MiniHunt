@@ -215,13 +215,13 @@ public class Game {
                 switch (GetPlayerAsRole.getRoleMapping().get(player)) {
                     case HUNTER:
                         this.onlineHunter.remove(player);
-                        if(onlineHunter.isEmpty()){
+                        if (onlineHunter.isEmpty()) {
                             LeaveEnding.leaveEnd(PlayerRole.RUNNER);
                         }
                         break;
                     case RUNNER:
                         this.onlineRunner.remove(player);
-                        if(onlineRunner.isEmpty()){
+                        if (onlineRunner.isEmpty()) {
                             LeaveEnding.leaveEnd(PlayerRole.HUNTER);
                         }
                         break;

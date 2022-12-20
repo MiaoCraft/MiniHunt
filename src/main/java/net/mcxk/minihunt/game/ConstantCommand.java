@@ -16,6 +16,7 @@ public class ConstantCommand {
     public static final String FORCE_START = "start";
     public static final String WANT = "want";
     public static final String HELP = "help";
+
     private ConstantCommand() {
     }
 }

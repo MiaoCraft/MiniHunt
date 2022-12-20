@@ -23,7 +23,6 @@ public class MiniHuntCommand implements CommandExecutor {
         }
         final MiniHunt miniHunt = MiniHunt.getInstance();
         final Game game = miniHunt.getGame();
-
         switch (args[0]) {
             case ConstantCommand.ABOUT:
                 AboutCommand.about(sender);

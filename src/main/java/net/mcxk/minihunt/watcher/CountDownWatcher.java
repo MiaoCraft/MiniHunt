@@ -60,11 +60,11 @@ public class CountDownWatcher {
                     final int size = game.getInGamePlayers().size();
                     String subTitle;
                     if (PlayerRole.WAITING.equals(playerRole)) {
-                        subTitle = String.format("游戏即将开始....[%s/%s][%s旁观%s]",size, game.getMaxPlayers(), ChatColor.GRAY, ChatColor.WHITE);
-                    } else if (PlayerRole.HUNTER.equals(playerRole)){
-                        subTitle = String.format("游戏即将开始....[%s/%s][%s猎人%s]",size, game.getMaxPlayers(),ChatColor.RED ,ChatColor.WHITE);
+                        subTitle = String.format("游戏即将开始....[%s/%s][%s旁观%s]", size, game.getMaxPlayers(), ChatColor.GRAY, ChatColor.WHITE);
+                    } else if (PlayerRole.HUNTER.equals(playerRole)) {
+                        subTitle = String.format("游戏即将开始....[%s/%s][%s猎人%s]", size, game.getMaxPlayers(), ChatColor.RED, ChatColor.WHITE);
                     } else {
-                        subTitle = String.format("游戏即将开始....[%s/%s][%s逃亡者%s]",size, game.getMaxPlayers(),ChatColor.GREEN ,ChatColor.WHITE);
+                        subTitle = String.format("游戏即将开始....[%s/%s][%s逃亡者%s]", size, game.getMaxPlayers(), ChatColor.GREEN, ChatColor.WHITE);
                     }
                     p.sendTitle(title, subTitle, 0, 40, 0);
                     if (game.isConfirmPrepare()) {

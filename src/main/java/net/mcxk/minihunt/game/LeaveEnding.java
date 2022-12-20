@@ -19,17 +19,17 @@ public class LeaveEnding {
     }
 
     public static void leaveEnd(@NotNull PlayerRole winner) {
-        switch (winner){
+        switch (winner) {
             case HUNTER:
-                for(Player p : GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER)){
+                for (Player p : GetPlayerAsRole.getPlayersAsRole(PlayerRole.RUNNER)) {
                     GetPlayerAsRole.getRoleMapping().remove(p);
-                    GetPlayerAsRole.getRoleMapping().put(p,PlayerRole.WAITING);
+                    GetPlayerAsRole.getRoleMapping().put(p, PlayerRole.WAITING);
                 }
                 break;
             case RUNNER:
-                for(Player p : GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER)){
+                for (Player p : GetPlayerAsRole.getPlayersAsRole(PlayerRole.HUNTER)) {
                     GetPlayerAsRole.getRoleMapping().remove(p);
-                    GetPlayerAsRole.getRoleMapping().put(p,PlayerRole.WAITING);
+                    GetPlayerAsRole.getRoleMapping().put(p, PlayerRole.WAITING);
                 }
                 break;
             default:

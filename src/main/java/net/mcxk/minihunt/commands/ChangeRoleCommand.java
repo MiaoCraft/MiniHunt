@@ -20,7 +20,7 @@ public class ChangeRoleCommand {
     }
 
     public static boolean changeRole(CommandSender sender, String arg, @NotNull Game game) {
-        if(!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             sender.sendMessage("请在游戏中输入此命令!");
             return true;
         }
