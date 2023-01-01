@@ -212,6 +212,7 @@ public class Game {
                 return;
             }
             if (endWhenAllLeave) {
+                this.reconnectTimer.put(player, System.currentTimeMillis());
                 switch (GetPlayerAsRole.getRoleMapping().get(player)) {
                     case HUNTER:
                         this.onlineHunter.remove(player);
@@ -284,6 +285,7 @@ public class Game {
             if (selectTeam && !intentionRunners.isEmpty()) {
                 Player selected = intentionRunners.get(random.nextInt(intentionRunners.size()));
                 roleMapTemp.put(selected, PlayerRole.RUNNER);
+                onlineRunner.add(selected);
                 noRolesPlayers.remove(selected);
                 intentionRunners.remove(selected);
             } else {
