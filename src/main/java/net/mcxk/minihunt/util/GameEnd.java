@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
@@ -74,6 +75,9 @@ public class GameEnd {
                     MiniHunt.config.set("LevelSeedNum", seedNum + 1);
                     MiniHunt.getInstance().saveConfig();
                     server.load(inputStreamReader);
+                    for(Map.Entry<Object,Object> entry : server.entrySet()){
+                        server.setProperty(entry.getKey().toString(),entry.getValue().toString());
+                    }
                     server.setProperty("level-seed", seed.get());
                     server.store(outputStreamWriter, "properties,write:level-seed");
                 } catch (IOException e) {
