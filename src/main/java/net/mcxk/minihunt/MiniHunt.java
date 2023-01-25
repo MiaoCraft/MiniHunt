@@ -21,7 +21,7 @@ public final class MiniHunt extends JavaPlugin {
     public static String messageHead;
     public static String pluginName;
     public static String pluginVersion;
-    public static byte seedFrom;
+    public static int seedFrom;
     public static FileConfiguration config;
     @Getter
     private static MiniHunt instance;
@@ -36,7 +36,8 @@ public final class MiniHunt extends JavaPlugin {
         pluginName = instance.getName();
         pluginVersion = instance.getDescription().getVersion();
         messageHead = String.format("[%s%s%s] ", ChatColor.AQUA, pluginName, ChatColor.WHITE);
-        seedFrom = (byte) instance.getConfig().getInt("seedFrom");
+        seedFrom = instance.getConfig().getInt("seedFrom");
+        System.out.println("seedFrom: " + seedFrom);
         config = getConfig();
     }
 
