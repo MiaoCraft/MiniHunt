@@ -66,6 +66,7 @@ public class GameEnd {
                     }
                     if (StringUtils.isEmpty(seed.get())) {
                         MiniHunt.getInstance().getLogger().info("种子行数配置错误! 将使用随机种子! ");
+                        MiniHunt.config.set("LevelSeedNum", 0);
                         Bukkit.shutdown();
                         return;
                     }
@@ -74,7 +75,7 @@ public class GameEnd {
                     server.load(inputStreamReader);
                     MiniHunt.getInstance().getLogger().log(Level.INFO, "读取到新的种子：{}", seed);
                     server.setProperty("level-seed", seed.get());
-                    server.store(outputStreamWriter, "propeties,write:level-seed");
+                    server.store(outputStreamWriter, "properties,write:level-seed");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
