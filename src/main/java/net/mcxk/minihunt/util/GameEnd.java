@@ -75,12 +75,13 @@ public class GameEnd {
                     MiniHunt.config.set("LevelSeedNum", seedNum + 1);
                     MiniHunt.getInstance().saveConfig();
                     server.load(inputStreamReader);
+                    System.out.println("read: " + inputStreamReader.read());
                     for(Map.Entry<Object,Object> entry : server.entrySet()){
                         server.setProperty(entry.getKey().toString(),entry.getValue().toString());
                         System.out.println(entry.getKey().toString() + " : " + entry.getValue().toString());
                     }
                     server.setProperty("level-seed", seed.get());
-                    server.store(outputStreamWriter, "properties,write:level-seed");
+                    server.store(outputStreamWriter, "Minecraft server properties");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
