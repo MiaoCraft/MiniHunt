@@ -77,6 +77,7 @@ public class GameEnd {
                     server.load(inputStreamReader);
                     for(Map.Entry<Object,Object> entry : server.entrySet()){
                         server.setProperty(entry.getKey().toString(),entry.getValue().toString());
+                        System.out.println(entry.getKey().toString() + " : " + entry.getValue().toString());
                     }
                     server.setProperty("level-seed", seed.get());
                     server.store(outputStreamWriter, "properties,write:level-seed");
