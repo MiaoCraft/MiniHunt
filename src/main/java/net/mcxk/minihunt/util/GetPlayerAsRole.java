@@ -3,7 +3,6 @@ package net.mcxk.minihunt.util;
 import com.google.common.collect.Maps;
 import lombok.Getter;
 import lombok.Setter;
-import net.mcxk.minihunt.game.Game;
 import net.mcxk.minihunt.game.PlayerRole;
 import org.bukkit.entity.Player;
 
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
  * @apiNote
  */
 public class GetPlayerAsRole {
-    static Game game = new Game();
     @Getter
     @Setter
     private static Map<Player, PlayerRole> roleMapping = Maps.newConcurrentMap();

@@ -42,7 +42,7 @@ public class GameEnd {
         switch (MiniHunt.seedFrom) {
             case 0:
                 Bukkit.shutdown();
-                return;
+                break;
             case 1:
                 MiniHunt.getInstance().getLogger().info("开始读取种子...");
                 final File file = new File(serverPath + "/plugins/" + MiniHunt.pluginName + "/seeds.txt");
@@ -68,29 +68,33 @@ public class GameEnd {
                         return;
                     }
                     MiniHunt.config.set("LevelSeedNum", seedNum + 1);
-                    MiniHunt.config.save(serverPath + "/plugins/" + MiniHunt.getInstance().getDescription().getName() + "/config.yml");
+                    MiniHunt.getInstance().saveConfig();
                     server.load(inputStreamReader);
-                    MiniHunt.getInstance().getLogger().log(Level.SEVERE, "读取到新的种子：{}", seed);
+                    MiniHunt.getInstance().getLogger().log(Level.INFO, "读取到新的种子：{}", seed);
                     server.setProperty("level-seed", seed.get());
                     server.store(outputStreamWriter, "propeties,write:level-seed");
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
+                    Bukkit.shutdown();
                 }
-                Bukkit.shutdown();
-                return;
+                break;
             case 2:
                 Bukkit.getScheduler().runTaskAsynchronously(JavaPlugin.getPlugin(MiniHunt.class), task -> {
                     MiniHunt.getInstance().getLogger().info("开始筛种...");
                     try (final OutputStreamWriter outputStreamWriter = new OutputStreamWriter(Files.newOutputStream(propertiesFile.toPath()), StandardCharsets.UTF_8)) {
                         seed.set(SeedFilter.getSeed());
-                        server.setProperty("level-seed", seed.get());
-                        server.store(outputStreamWriter, "propeties,write:level-seed");
+                        if (!" ".equals(seed.get())) {
+                            server.setProperty("level-seed", seed.get());
+                            server.store(outputStreamWriter, "propeties,write:level-seed");
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } finally {
+                        Bukkit.shutdown();
                     }
-                    Bukkit.shutdown();
                 });
-                return;
+                break;
             default:
                 MiniHunt.getInstance().getLogger().info("种子获取方式配置错误! 将使用随机种子! ");
                 Bukkit.shutdown();

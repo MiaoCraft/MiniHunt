@@ -88,7 +88,7 @@ public class GameProgressManager {
         }
     }
 
-    private void broadcastProgress(GameProgress progress, boolean item, boolean buff) {
+    private void broadcastProgress(@NotNull GameProgress progress, boolean item, boolean buff) {
         Bukkit.broadcastMessage(ChatColor.AQUA + "新的游戏阶段已解锁 " + ChatColor.GREEN + "[" + progress.getDisplay() + "]");
         if (item) {
             Bukkit.broadcastMessage(ChatColor.GREEN + "奖励补给已发放到您的背包中，请查收!");
