@@ -55,6 +55,7 @@ public class GameEnd {
                         Bukkit.shutdown();
                         return;
                     }
+                    seed.set(seedReader.readLine());
                     System.out.println(seedReader.readLine());
                     for (int i = 0; i <= seedNum; i++) {
                         if (i == seedNum) {
